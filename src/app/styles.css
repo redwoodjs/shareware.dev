@@ -1,0 +1,368 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "ChicagoFLF";
+  src: url("/fonts/chicago/ChicagoFLF.woff2") format("woff2"),
+    url("/fonts/chicago/ChicagoFLF.woff") format("woff"),
+    url("/fonts/chicago/ChicagoFLF.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AdvercaseFont-Regular";
+  src: url("/fonts/advercase/AdvercaseFont-Regular.woff2") format("woff2"),
+    url("/fonts/advercase/AdvercaseFont-Regular.woff") format("woff"),
+    url("/fonts/advercase/AdvercaseFont-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-chicago: "ChicagoFLF", sans-serif;
+  --font-sans: "Lucida Grande", sans-serif;
+  --font-body: var(--font-sans);
+  --font-serif: "AdvercaseFont-Regular", sans-serif;
+
+  --color-destructive: var(--color-vivid-red);
+  --color-success: var(--color-fern);
+  --color-warning: var(--color-casablanca);
+  --color-link: var(--color-bluebonnet);
+  --color-link-hover: var(--color-vivid-red);
+  --color-background: var(--color-alabaster);
+
+  --color-bluebonnet: #121aff;
+  --color-casablanca: #f3b15c;
+  --color-jaffa: #e47947;
+  --color-dull-cyan: #44bbcd;
+  --color-dark-gray: #ada7a7;
+  --color-fern: #70ad6e;
+  --color-vivid-red: #ee100e;
+  --color-alabaster: #f2eee7;
+}
+
+@utility center {
+  @apply flex items-center justify-center;
+}
+
+@utility full-screen {
+  @apply fixed inset-0;
+}
+
+@utility size-screen {
+  @apply w-screen h-screen;
+}
+
+@utility rounded-corners {
+  @apply rounded-[5px];
+}
+
+@utility page-width {
+  @apply max-w-[1400px] w-full mx-auto page-margin;
+}
+
+@utility page-margin {
+  @apply px-12;
+}
+
+@layer base, components, pages;
+
+@layer base {
+  :root {
+    --z-index-window: 9999;
+    --z-index-overlay: 9998;
+    --z-index-dropdown: 9997;
+    --z-index-dropdown-trigger: 10;
+  }
+
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: url("/images/dither.svg") left top repeat;
+    @apply border-x-2 border-black;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white border-2 border-black;
+  }
+
+  body {
+    @apply font-sans p-0 m-0 bg-background dark:bg-black w-screen overflow-x-hidden overflow-y-auto;
+  }
+
+  .no-scroll {
+    @apply overflow-y-hidden;
+  }
+
+  .page-title {
+    @apply text-[72px] font-serif leading-[80px] mb-6;
+  }
+
+  .subheading {
+    @apply text-[35px] font-serif mb-2 leading-[1.3];
+  }
+
+  p {
+    @apply font-body leading-loose mb-8;
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+
+  /* highlight */
+  ::selection {
+    @apply bg-black text-white;
+  }
+
+  /* form */
+  .field {
+    @apply mb-6;
+  }
+
+  .button-group {
+    @apply flex items-center gap-2;
+  }
+
+  .button {
+    @apply font-chicago rounded-corners bg-white py-2 px-5 border-2 border-black hover:bg-black hover:text-white cursor-pointer;
+    &.primary {
+      @apply outline-2 outline-white relative mx-2 inline-block;
+      &:before {
+        @apply content-[""] block w-[calc(100%+16px)] h-[calc(100%_+_16px)] bg-black -inset-[8px] absolute rounded-[9px] z-[-1];
+      }
+    }
+  }
+
+  label {
+    @apply block uppercase mb-2 font-chicago;
+  }
+
+  input::selection {
+    @apply bg-casablanca text-black;
+  }
+
+  select,
+  textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="url"],
+  input[type="email"] {
+    @apply border-[2px] border-white rounded-none w-full h-[60px] px-2 outline-[2px] outline-black focus:bg-black focus:text-white font-chicago;
+  }
+
+  textarea {
+    @apply h-[135px] py-2;
+  }
+
+  input[type="checkbox"] {
+    @apply appearance-none bg-[url('/images/checkbox--unchecked.svg')] bg-no-repeat bg-center size-6 cursor-pointer;
+    &:checked {
+      @apply bg-[url('/images/checkbox--checked.svg')] bg-no-repeat bg-center;
+    }
+  }
+
+  svg {
+    @apply fill-current;
+  }
+
+  footer {
+    @apply pt-20 pb-10;
+  }
+
+  footer ul {
+    @apply center gap-4 font-chicago text-white;
+    li {
+      @apply flex items-center gap-4;
+      &:after {
+        @apply content-[''] size-1 bg-casablanca rounded-full;
+      }
+      &:first-child:before {
+        @apply content-[''] size-1 bg-casablanca rounded-full;
+      }
+    }
+    a {
+      @apply text-white hover:text-casablanca relative;
+    }
+  }
+}
+
+@layer components {
+  .tag-archived {
+    @apply bg-dark-gray text-white;
+  }
+
+  .tag-pending {
+    @apply bg-jaffa text-white;
+  }
+
+  .tag-featured {
+    @apply bg-dull-cyan text-white;
+  }
+
+  .tag-approved {
+    @apply bg-fern text-white;
+  }
+
+  .content-grid {
+    @apply grid grid-cols-[minmax(0,1fr)_200px] pt-10 gap-x-20 pb-20;
+    &__main {
+      @apply pb-20 max-w-[660px] mx-auto relative;
+    }
+  }
+
+  .half-grid {
+    @apply grid grid-cols-[40%_60%] h-full;
+    .half-grid--left {
+      @apply border-r-1 border-black pt-10;
+    }
+    .half-grid--right {
+      @apply pt-10 px-8 pb-20 max-w-[600px] w-full;
+    }
+  }
+
+  .main-nav {
+    a {
+      @apply text-black hover:bg-black hover:text-white px-2 py-1 whitespace-nowrap;
+    }
+  }
+
+  .dropdown-item {
+    @apply flex items-center gap-2 whitespace-nowrap w-full py-3 px-4 text-sm;
+    &:hover,
+    &.selected {
+      @apply bg-black text-white;
+    }
+  }
+
+  .show-separator li:last-child {
+    @apply border-t-1 border-black border-dashed;
+  }
+
+  .copy-code {
+    input::selection {
+      @apply bg-white text-black;
+    }
+  }
+
+  .multiple-lines {
+    @apply flex-1 bg-[url('/images/multiple-lines.svg')] bg-repeat-x h-[13px];
+  }
+
+  .newsletter {
+    .newsletter-button {
+      @apply rounded-[5px] border-black border-2 h-11 px-6 mb-4 relative z-30 bg-white cursor-pointer font-chicago;
+      &:not(.primary) {
+        @apply hover:bg-black hover:text-white;
+      }
+      &.primary {
+        @apply border-[5px] h-[58px] rounded-[9px] !p-[2px];
+        span {
+          @apply border-2 border-black size-full rounded-[5px] px-6 h-11 inline-flex center hover:bg-black hover:text-white;
+        }
+      }
+    }
+  }
+
+  .faq {
+    @apply relative;
+    &.open {
+      @apply mb-10;
+    }
+    &.open:before {
+      @apply z-[-1] content-[''] h-full w-4 border-l-2 border-b-2 border-black absolute left-[10px] top-3;
+    }
+  }
+
+  .aside-nav a {
+    @apply text-black hover:text-link hover:underline;
+  }
+
+  li.header {
+    background-size: 8px 15px;
+    background-position: left 2px;
+    @apply bg-[url('/images/right-triangle@2x.png')] bg-no-repeat pl-3 -ml-3;
+  }
+
+  .aside-nav li.header {
+    background-position: left 4px;
+  }
+
+  .on-this-page-nav ul li {
+    a {
+      @apply text-black hover:underline hover:text-link;
+    }
+    ul {
+      @apply py-2 flex flex-col gap-1;
+      li {
+        @apply pl-3;
+      }
+    }
+  }
+
+  .tag-group {
+    @apply flex items-center gap-x-2;
+  }
+}
+
+@layer pages {
+  /* home */
+  .faq-list {
+    @apply flex flex-col gap-y-1;
+  }
+
+  /* individual add on page */
+  .addon-links {
+    @apply flex flex-col gap-y-2;
+    a {
+      @apply flex items-center gap-x-2 text-sm font-chicago hover:text-link hover:underline;
+    }
+  }
+
+  .addon-content {
+    img,
+    iframe {
+      @apply mb-10;
+    }
+
+    h2 {
+      @apply text-[35px] font-serif mb-3 leading-none;
+    }
+
+    pre {
+      @apply w-full bg-black text-white p-4 rounded-corners mb-10;
+    }
+  }
+
+  /* auth */
+  .auth-box {
+    @apply bg-white border-1 border-black p-10 pt-12;
+    h1 {
+      @apply font-serif text-[72px] leading-[80px] mb-3;
+    }
+  }
+
+  /* submit an add on */
+  .accept-terms {
+    a {
+      @apply text-link underline hover:text-link-hover font-bold;
+    }
+  }
+
+  /* admin - manage add ons */
+  .admin-addons-table {
+    /* the first and last column have to include the row padding */
+    @apply grid grid-cols-[100px_1fr_1fr_210px_60px] gap-4 mb-20;
+    /* first five cells  */
+    > div:nth-child(-n + 5) {
+      @apply font-chicago -mb-2;
+    }
+  }
+}

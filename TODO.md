@@ -1,0 +1,3 @@
+- [ ] Add Fathom Analytics
+- [ ] Formatting on the Submit Your Add On Page
+- [ ] Primary Button styling isn't consistent
