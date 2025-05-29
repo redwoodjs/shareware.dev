@@ -8,7 +8,7 @@ import { Icon } from "./Icon";
 import { useEscapeKey, useOutsideClick } from "captain-react-hooks";
 
 const AdminBar = ({
-  hideAddOnControls = false,
+  hideAddOnControls = true,
 }: {
   hideAddOnControls?: boolean;
 }) => {
@@ -28,32 +28,30 @@ const AdminBar = ({
       <a href={link("/admin/")} className="button primary">
         Admin Panel
       </a>
-      <div
-        className={`flex items-center justify-center gap-3 flex-1 ${
-          hideAddOnControls ? "hidden" : ""
-        }`}
-      >
-        <button className="admin-bar-button button">
-          <Icon id="check" />
-          Approve
-        </button>
-        <button className="admin-bar-button button">
-          <Icon id="clock" />
-          Mark as Pending
-        </button>
-        <button className="admin-bar-button button">
-          <Icon id="archive" />
-          Archive
-        </button>
-        <button className="admin-bar-button button">
-          <Icon id="star" />
-          Featured
-        </button>
-        <button className="admin-bar-button button">
-          <Icon id="edit" />
-          Edit
-        </button>
-      </div>
+      {!hideAddOnControls && (
+        <div className="flex items-center justify-center gap-3 flex-1">
+          <button className="admin-bar-button button">
+            <Icon id="check" />
+            Approve
+          </button>
+          <button className="admin-bar-button button">
+            <Icon id="clock" />
+            Mark as Pending
+          </button>
+          <button className="admin-bar-button button">
+            <Icon id="archive" />
+            Archive
+          </button>
+          <button className="admin-bar-button button">
+            <Icon id="star" />
+            Featured
+          </button>
+          <button className="admin-bar-button button">
+            <Icon id="edit" />
+            Edit
+          </button>
+        </div>
+      )}
       <div className="relative" ref={dropdownRef}>
         <button
           className="cursor-pointer"

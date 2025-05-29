@@ -35,7 +35,9 @@
     "@tailwindcss/vite": "^4.1.7",
     "captain-react-hooks": "^1.0.0",
     "motion": "^12.15.0",
+    "resend": "^4.5.1",
     "rwsdk": "0.0.85",
+    "sonner": "^2.0.3",
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {

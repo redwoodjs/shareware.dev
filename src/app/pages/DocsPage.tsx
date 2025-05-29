@@ -1,3 +1,4 @@
+import { AdminBar } from "../components/AdminBar";
 import { InteriorLayout } from "../layouts/InteriorLayout";
 
 const DocsPage = () => {
@@ -35,6 +36,7 @@ const DocsPage = () => {
           </div>
         </aside>
       </div>
+      <AdminBar />
     </InteriorLayout>
   );
 };

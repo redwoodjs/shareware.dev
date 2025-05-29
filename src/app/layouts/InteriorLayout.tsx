@@ -1,7 +1,7 @@
-import { AdminBar } from "../components/AdminBar";
 import { AsideNav } from "../components/AsideNav";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import { Toaster } from "../components/Toaster";
 
 const InteriorLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -15,8 +15,8 @@ const InteriorLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
         <div className="page-margin">{children}</div>
       </div>
-      <AdminBar hideAddOnControls={true} />
       <Footer />
+      <Toaster />
     </div>
   );
 };

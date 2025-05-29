@@ -96,7 +96,7 @@ const AddonPage = () => {
           </p>
         </div>
       </div>
-      <AdminBar />
+      <AdminBar hideAddOnControls={false} />
     </InteriorLayout>
   );
 };

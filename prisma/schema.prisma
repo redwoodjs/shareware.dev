@@ -21,23 +21,73 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id          String      @id @default(uuid()) // User ID (UUID-based)
-  username    String      @unique
+model AddOn {
+  id          String      @id @default(uuid()) // Add On ID (UUID-based)
+  name        String
+  firstName   String
+  lastName    String
+  email       String
+  avatar      String
+  cover       String
+  demo        String
+  owner       String
+  repo        String
+  order       Int         @default(0)
+  featured    Boolean     @default(false)
+  description String
+  category    Category    @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  tags        AddOnTag[]
+  status      Status      @relation(fields: [statusId], references: [id])
+  statusId    Int
   createdAt   DateTime    @default(now())
-
-  credentials Credential[] // Relationship: One user can have many credentials
 }
 
-model Credential {
-  id            String   @id @default(uuid()) // Internal DB ID
-  userId        String   @unique // Every credential is linked to a specific user
-  user          User     @relation(fields: [userId], references: [id])
-  createdAt     DateTime @default(now())
-  credentialId  String   @unique // WebAuthn credential identifier
-  publicKey     Bytes
-  counter       Int      @default(0)
-  
-  @@index([credentialId])
-  @@index([userId])
+model AddOnTag {
+  id      Int      @id @default(autoincrement())
+  addOnId String
+  addOn   AddOn   @relation(fields: [addOnId], references: [id])
+  tagId   Int
+  tag     Tag     @relation(fields: [tagId], references: [id])
+
+  @@unique([addOnId, tagId])
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String
+  addOns      AddOn[]
+}
+
+model Status {
+  id          Int      @id @default(autoincrement())
+  name        String
+  addOns      AddOn[]
+}
+
+model Subscriber {
+  id          String      @id @default(uuid())
+  firstName   String
+  email       String      @unique
+  verified    Boolean     @default(false)
+  token       String?
+  tokenExpiresAt   DateTime?
+  createdAt   DateTime    @default(now())
+}
+
+model Tag {
+  id          Int      @id @default(autoincrement())
+  name        String
+  addOns      AddOnTag[]
+}
+
+model User {
+  id          String      @id @default(uuid()) // User ID (UUID-based)
+  email    String      @unique
+  password  String
+  firstName String
+  lastName  String
+  role      String
+  status    String
+  createdAt   DateTime    @default(now())
 }

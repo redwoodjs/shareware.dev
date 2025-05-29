@@ -1,8 +1,8 @@
 import { AdminNav } from "../pages/admin/components/AdminNav";
-import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { Avatar } from "../components/Avatar";
 import { link } from "../shared/links";
+import { Toaster } from "../components/Toaster";
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -13,7 +13,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
           <div className="pt-10 pb-20 px-10">
             <AdminNav />
           </div>
-          <div className="py-5 px-10 flex gap-5 items-center">
+          <div className="py-5 px-10 flex gap-5 items-center border-t-2 border-black border-dashed">
             <div className="flex-shrink-0">
               <a href={link("/admin/settings")}>
                 <Avatar
@@ -45,6 +45,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
         <div className="page-margin">{children}</div>
       </div>
+      <Toaster />
     </div>
   );
 };

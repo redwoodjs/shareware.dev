@@ -1,3 +1,4 @@
+import { AdminBar } from "../components/AdminBar";
 import { InteriorLayout } from "../layouts/InteriorLayout";
 
 const LegalPage = () => {
@@ -66,6 +67,7 @@ const LegalPage = () => {
           </div>
         </aside>
       </div>
+      <AdminBar />
     </InteriorLayout>
   );
 };

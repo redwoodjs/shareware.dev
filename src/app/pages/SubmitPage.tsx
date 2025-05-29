@@ -1,3 +1,4 @@
+import { AdminBar } from "../components/AdminBar";
 import { InteriorLayout } from "../layouts/InteriorLayout";
 import { link } from "../shared/links";
 
@@ -106,6 +107,7 @@ const SubmitPage = () => {
           </form>
         </div>
       </div>
+      <AdminBar />
     </InteriorLayout>
   );
 };
