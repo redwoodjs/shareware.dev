@@ -117,7 +117,7 @@ const NewAddOnButton = () => {
                       </a>
                     </p>
                   </div>
-                  <div className="button-group justify-start relative z-[var(--z-index-window-buttons)]">
+                  <div className="button-group justify-start up">
                     <button type="submit" className="button primary">
                       Submit
                     </button>

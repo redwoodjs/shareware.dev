@@ -12,7 +12,7 @@ export const Window = ({
   onClose?: () => void;
 }) => {
   return (
-    <section className="bg-white border-[4px] border-white outline-[4px] outline-black text-black w-[calc(100%_-_8px)] mx-auto">
+    <div className="bg-white border-[4px] border-white outline-[4px] outline-black text-black w-[calc(100%_-_8px)] mx-auto">
       <header className="flex items-center gap-2 mb-0">
         {closable ? (
           <button
@@ -27,6 +27,6 @@ export const Window = ({
         <div className="multiple-lines"></div>
       </header>
       <div className="px-[2px] py-1">{children}</div>
-    </section>
+    </div>
   );
 };

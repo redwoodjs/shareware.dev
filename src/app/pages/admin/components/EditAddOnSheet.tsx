@@ -8,7 +8,6 @@ import { Toggle } from "@/app/components/Toggle";
 import { link } from "@/app/shared/links";
 import { useEscapeKey } from "captain-react-hooks";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
 
 const EditAddOnSheet = ({
   isOpen,
@@ -125,7 +124,7 @@ const EditAddOnSheet = ({
                     </a>
                   </p>
                 </div>
-                <div className="button-group justify-start relative z-[var(--z-index-window-buttons)]">
+                <div className="button-group justify-start up">
                   <button type="submit" className="button primary">
                     Submit
                   </button>

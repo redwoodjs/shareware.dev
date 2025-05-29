@@ -138,6 +138,9 @@
 
   .button-group {
     @apply flex items-center gap-2;
+    &.up {
+      @apply relative z-[var(--z-index-window-buttons)];
+    }
   }
 
   .button {
