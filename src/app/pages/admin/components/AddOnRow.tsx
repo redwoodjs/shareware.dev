@@ -12,16 +12,19 @@ import { useEffect, useRef, useState } from "react";
 
 const AddOnRow = ({ addon }: { addon: any }) => {
   const [isDropdownShowing, setIsDropdownShowing] = useState(false);
-  const [isEditAddOnSheetShowing, setIsEditAddOnSheetShowing] = useState(false);
+  const [isEditSheetOpen, setIsEditSheetOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const dragControls = useDragControls();
 
-  useEscapeKey(() => setIsDropdownShowing(false));
+  useEscapeKey(() => {
+    setIsDropdownShowing(false);
+    setIsEditSheetOpen(false);
+  });
   useOutsideClick(() => setIsDropdownShowing(false), menuRef);
 
   useEffect(() => {
-    console.log({ isEditAddOnSheetShowing });
-  }, [isEditAddOnSheetShowing]);
+    console.log({ isEditSheetOpen });
+  }, [isEditSheetOpen]);
 
   return (
     <motion.div
@@ -65,7 +68,7 @@ const AddOnRow = ({ addon }: { addon: any }) => {
       </div>
       <div className="relative" ref={menuRef}>
         <button
-          onClick={() => setIsDropdownShowing((prevValue) => !prevValue)}
+          onClick={() => setIsDropdownShowing((prev) => !prev)}
           className={`flex hover:bg-black hover:text-white rounded-corners cursor-pointer p-2 z-[var(--z-index-dropdown-trigger)] ${
             isDropdownShowing ? "bg-black text-white" : ""
           }`}
@@ -73,8 +76,8 @@ const AddOnRow = ({ addon }: { addon: any }) => {
           <Icon id="dotsHorizontal" />
         </button>
         <EditAddOnSheet
-          isOpen={isEditAddOnSheetShowing}
-          handleClose={() => setIsEditAddOnSheetShowing(false)}
+          isOpen={isEditSheetOpen}
+          handleClose={() => setIsEditSheetOpen(false)}
         />
         {isDropdownShowing && (
           <div className="absolute top-11 right-0 z-[var(--z-index-dropdown)]">
@@ -100,8 +103,7 @@ const AddOnRow = ({ addon }: { addon: any }) => {
                   icon: "edit",
                   label: "Edit",
                   handleClick: () => {
-                    console.log("edit");
-                    setIsEditAddOnSheetShowing(true);
+                    setIsEditSheetOpen(true);
                     setIsDropdownShowing(false);
                   },
                 },
