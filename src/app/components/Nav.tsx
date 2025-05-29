@@ -24,9 +24,9 @@ const Nav = () => {
           <li>
             <a href={link("/docs/:slug", { slug: "introduction" })}>Add Ons</a>
           </li>
-          <li>
+          {/* <li>
             <a href="#">Request an Add On</a>
-          </li>
+          </li> */}
           {/* <li>
               <ThemeSwitcher />
             </li> */}
