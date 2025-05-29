@@ -205,6 +205,25 @@
     }
   }
 
+  ol {
+    counter-reset: circle-numbers;
+    @apply list-none m-0 p-0;
+    li {
+      @apply relative pl-[54px] mb-[54px];
+      &:before {
+        content: counter(circle-numbers);
+        counter-increment: circle-numbers;
+        @apply font-bold absolute left-0 -top-1 size-9 border-2 border-black rounded-full center;
+      }
+      &:after {
+        @apply content-[''] absolute left-[18px] top-8 border-1 border-black h-[calc(100%_+_20px)];
+      }
+      &:last-child:after {
+        @apply hidden;
+      }
+    }
+  }
+
   svg {
     @apply fill-current;
   }

@@ -102,22 +102,7 @@ const NewAddOnButton = () => {
                       <option value="2">2</option>
                     </select>
                   </div>
-                  <div className="field flex items-start gap-2 accept-terms mb-10">
-                    <div>
-                      <input type="checkbox" id="terms" />
-                    </div>
-                    <p className="relative leading-normal">
-                      I've read and accept RedwoodSDK's{" "}
-                      <a href={link("/legal/:slug", { slug: "guidelines" })}>
-                        Add-On Guidelines
-                      </a>{" "}
-                      and{" "}
-                      <a href={link("/legal/:slug", { slug: "guidelines" })}>
-                        Community Guidelines.
-                      </a>
-                    </p>
-                  </div>
-                  <div className="button-group justify-start up">
+                  <div className="button-group justify-start up pt-6">
                     <button type="submit" className="button primary">
                       Submit
                     </button>

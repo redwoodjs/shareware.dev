@@ -15,6 +15,7 @@ const InteriorLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
         <div className="page-margin">{children}</div>
       </div>
+      <AdminBar hideAddOnControls={true} />
       <Footer />
     </div>
   );

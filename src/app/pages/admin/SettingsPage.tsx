@@ -1,5 +1,7 @@
+import { AdminLayout } from "@/app/layouts/AdminLayout";
+
 const SettingsPage = () => {
-  return <div>SettingsPage</div>;
+  return <AdminLayout>SettingsPage</AdminLayout>;
 };
 
 export { SettingsPage };

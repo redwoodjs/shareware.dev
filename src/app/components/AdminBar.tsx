@@ -7,7 +7,11 @@ import { Dropdown } from "./Dropdown";
 import { Icon } from "./Icon";
 import { useEscapeKey, useOutsideClick } from "captain-react-hooks";
 
-const AdminBar = () => {
+const AdminBar = ({
+  hideAddOnControls = false,
+}: {
+  hideAddOnControls?: boolean;
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDropdownShowing, setIsDropdownShowing] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -24,7 +28,11 @@ const AdminBar = () => {
       <a href={link("/admin/")} className="button primary">
         Admin Panel
       </a>
-      <div className="flex items-center justify-center gap-3 flex-1">
+      <div
+        className={`flex items-center justify-center gap-3 flex-1 ${
+          hideAddOnControls ? "hidden" : ""
+        }`}
+      >
         <button className="admin-bar-button button">
           <Icon id="check" />
           Approve

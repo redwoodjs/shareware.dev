@@ -7,18 +7,20 @@ const SubmitPage = () => {
       <div className="half-grid">
         <div className="half-grid--left pr-10">
           <h1 className="page-title">Submit Your Add On</h1>
-          <h2 className="subheading">Help Build the RedwoodSDK Ecosystem</h2>
-          <p>
+          <h2 className="subheading mb-4">
+            Help Build the RedwoodSDK Ecosystem
+          </h2>
+          <p className="text-xl leading-normal">
             Got a useful RedwoodSDK component or integration? Let's get it in
             front of other developers.
           </p>
-          <p>
+          <p className="text-xl leading-normal mb-8">
             The best developer tools come from the community. If you've built
             something that makes RedwoodSDK development easier, faster, or more
             enjoyable, we want to help you share it.
           </p>
 
-          <h2>How it Works</h2>
+          <h2 className="subheading">How it Works</h2>
           <ol>
             <li>
               Sunt ad dolor occaecat ut occaecat sint aliquip ea ullamco
@@ -42,7 +44,7 @@ const SubmitPage = () => {
             </li>
           </ol>
         </div>
-        <div className="half-grid--right">
+        <div className="half-grid--right pt-[100px]">
           <form>
             <div className="field">
               <label htmlFor="firstName">First Name</label>
@@ -57,7 +59,7 @@ const SubmitPage = () => {
               <input type="email" id="email" />
             </div>
             <div className="field">
-              <label htmlFor="githubUrl">GitHub Repository</label>
+              <label htmlFor="githubUrl">GitHub Repository URL</label>
               <input type="url" id="githubUrl" />
             </div>
             <div className="field">

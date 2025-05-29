@@ -4,6 +4,7 @@ import { PlayVideo } from "../components/PlayVideo";
 import { Nav } from "../components/Nav";
 import { AddOnRow } from "../components/AddOnRow";
 import { Faq } from "../components/Faq";
+import { AdminBar } from "../components/AdminBar";
 
 const HomePage = ({ ctx }: RequestInfo) => {
   return (
@@ -125,6 +126,7 @@ const HomePage = ({ ctx }: RequestInfo) => {
           ? `You are logged in as user ${ctx.user.username}`
           : "You are not logged in"}
       </p> */}
+      <AdminBar hideAddOnControls={true} />
       <Footer />
     </div>
   );

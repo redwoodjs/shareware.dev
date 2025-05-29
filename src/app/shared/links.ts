@@ -13,4 +13,5 @@ export const link = defineLinks([
   "/legal/:slug",
   "/admin/",
   "/admin/users",
+  "/admin/settings",
 ]);

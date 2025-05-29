@@ -46,7 +46,7 @@ const NewUserButton = () => {
                     <label htmlFor="email">Email</label>
                     <input type="email" id="email" />
                   </div>
-                  <div className="field action-buttons relative z-[var(--z-index-window-buttons)]">
+                  <div className="field button-group relative z-[var(--z-index-window-buttons)]">
                     <button className="button primary">Submit</button>
                     <button className="button">Cancel</button>
                   </div>
