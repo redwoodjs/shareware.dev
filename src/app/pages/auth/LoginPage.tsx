@@ -23,7 +23,7 @@ const LoginPage = () => {
             </div>
             <input type="password" id="password" />
           </div>
-          <div className="button-group justify-end">
+          <div className="button-group justify-end up">
             <a href={link("/")} className="button">
               Cancel
             </a>

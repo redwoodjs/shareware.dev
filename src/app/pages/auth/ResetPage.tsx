@@ -15,7 +15,7 @@ const ResetPage = () => {
             <label htmlFor="confirmPassword">Confirm Password</label>
             <input type="password" id="confirmPassword" />
           </div>
-          <div className="button-group justify-end">
+          <div className="button-group justify-end up">
             <a href={link("/login")} className="button">
               Cancel
             </a>

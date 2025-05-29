@@ -11,7 +11,7 @@ const ForgotPage = () => {
             <label htmlFor="email">Email</label>
             <input type="email" id="email" />
           </div>
-          <div className="button-group justify-end">
+          <div className="button-group justify-end up">
             <a href={link("/login")} className="button">
               Cancel
             </a>
