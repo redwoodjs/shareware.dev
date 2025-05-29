@@ -3,8 +3,35 @@ import { Credit } from "../components/Credit";
 import { Icon } from "../components/Icon";
 import { InteriorLayout } from "../layouts/InteriorLayout";
 import { RequestInfo } from "rwsdk/worker";
+import { db } from "@/db";
+import { Prisma } from "@generated/prisma";
 
-const AddonPage = ({ ctx }: RequestInfo) => {
+export type AddOnWithStatusAndCategory = Prisma.AddOnGetPayload<{
+  include: {
+    status: true;
+    category: true;
+  };
+}>;
+
+const AddonPage = async ({ ctx, params }: RequestInfo) => {
+  const { slug } = params;
+
+  console.log({ slug });
+
+  // get the add on details
+  const addon = await db.addOn.findUnique({
+    where: {
+      id: slug,
+    },
+    include: {
+      status: true,
+      category: true,
+    },
+  });
+
+  // get all the categories
+  const categories = await db.category.findMany();
+
   return (
     <InteriorLayout>
       <div className="half-grid">
@@ -13,32 +40,43 @@ const AddonPage = ({ ctx }: RequestInfo) => {
           <div className="sticky top-10 pb-20 pr-12">
             <div className="mb-5">
               <Credit
-                link="https://github.com"
+                link={`https://github.com/${addon?.owner}/${addon?.repo}`}
                 avatar={{ src: "/images/placeholder-avatar.png", alt: "owner" }}
-                owner="owner"
-                repo="repo"
+                owner={addon?.owner ?? ""}
+                repo={addon?.repo ?? ""}
               />
             </div>
 
-            <h1 className="page-title">Slack Notifications</h1>
+            <h1 className="page-title">{addon?.name}</h1>
             <p className="text-lg tracking-tight leading-relaxed mb-10">
-              Configure custom triggers for user signups, form submissions,
-              errors, and more. Simple webhook setup with message formatting,
-              channel routing, and rate limiting built in.
+              {addon?.description}
             </p>
-            <a href="#" className="button primary mb-10">
+            <a
+              href={addon?.demo}
+              target="_blank"
+              rel="noreferrer"
+              className="button primary mb-10"
+            >
               View Demo
             </a>
 
             <ul className="flex gap-x-2 addon-links">
               <li>
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a
+                  href={`https://github.com/${addon?.owner}/${addon?.repo}/issues`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Icon id="github" size={24} />
                   <span>Submit an Issue</span>
                 </a>
               </li>
               <li>
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a
+                  href={`https://github.com/${addon?.owner}/${addon?.repo}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Icon id="github" size={24} />
                   <span>View Code on GitHub</span>
                 </a>
@@ -98,9 +136,11 @@ const AddonPage = ({ ctx }: RequestInfo) => {
         </div>
       </div>
       <AdminBar
+        addOn={addon ?? undefined}
         hideAddOnControls={false}
         user={ctx.user}
         defaultExpanded={ctx.user?.isAdminBarShowing}
+        categories={categories}
       />
     </InteriorLayout>
   );

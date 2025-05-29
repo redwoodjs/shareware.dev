@@ -1,12 +1,12 @@
 import { AsideNav } from "../components/AsideNav";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-// import { Toaster } from "../components/Toaster";
+import { Toaster } from "../components/Toaster";
 
 const InteriorLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      {/* <Toaster /> */}
+      <Toaster />
       <Header />
       <div className="grid grid-cols-[270px_1fr]">
         <div className="border-r-2 border-black">

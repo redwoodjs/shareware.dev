@@ -1,6 +1,6 @@
 "use client";
 
-import { Badge } from "@/app/components/Badge";
+import { Badge, BadgeStatus } from "@/app/components/Badge";
 import { Credit } from "@/app/components/Credit";
 import { Dropdown } from "@/app/components/Dropdown";
 import { Icon } from "@/app/components/Icon";
@@ -8,10 +8,18 @@ import { EditAddOnSheet } from "./EditAddOnSheet";
 import { link } from "@/app/shared/links";
 import { useEscapeKey, useOutsideClick } from "captain-react-hooks";
 import { useDragControls, motion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { DeleteAddOn } from "./DeleteAddOn";
+import { AddOnWithCategoryAndStatus } from "../DashboardPage";
+import { Category } from "@generated/prisma";
 
-const AddOnRow = ({ addon }: { addon: any }) => {
+const AddOnRow = ({
+  addon,
+  categories,
+}: {
+  addon: AddOnWithCategoryAndStatus;
+  categories: Category[];
+}) => {
   const [isDropdownShowing, setIsDropdownShowing] = useState(false);
   const [isEditSheetOpen, setIsEditSheetOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -23,10 +31,6 @@ const AddOnRow = ({ addon }: { addon: any }) => {
     setIsEditSheetOpen(false);
   });
   useOutsideClick(() => setIsDropdownShowing(false), menuRef);
-
-  useEffect(() => {
-    console.log({ isEditSheetOpen });
-  }, [isEditSheetOpen]);
 
   return (
     <motion.div
@@ -44,11 +48,18 @@ const AddOnRow = ({ addon }: { addon: any }) => {
         <img src="/images/move.svg" alt="Reorder Add On Row" />
       </button>
       <div>
-        <Badge label="Archived" status="archived" />
+        <Badge
+          label={addon.featured ? "Featured" : addon.status.name}
+          status={
+            addon.featured
+              ? "featured"
+              : (addon.status.name.toLowerCase() as BadgeStatus)
+          }
+        />
       </div>
       <div>
         <a
-          href="#"
+          href={link("/addon/:slug", { slug: addon.id })}
           className="text-link underline hover:text-link-hover font-sans font-bold text-lg"
         >
           {addon.name}
@@ -57,16 +68,15 @@ const AddOnRow = ({ addon }: { addon: any }) => {
       <div>
         <Credit
           avatar={{
-            src: "/images/placeholder-avatar.png",
-            alt: "RedwoodJS",
+            src: addon.avatar ?? undefined,
+            alt: addon.owner,
           }}
-          owner="redwoodjs"
-          repo="redwood"
+          owner={addon.owner}
+          repo={addon.repo}
         />
       </div>
       <div className="tag-group">
-        <Badge label="Tag 1" />
-        <Badge label="Tag 1" />
+        <Badge label={addon.category.name} />
       </div>
       <div className="relative" ref={menuRef}>
         <button
@@ -78,10 +88,13 @@ const AddOnRow = ({ addon }: { addon: any }) => {
           <Icon id="dotsHorizontal" />
         </button>
         <EditAddOnSheet
+          addOn={addon}
+          categories={categories}
           isOpen={isEditSheetOpen}
           handleClose={() => setIsEditSheetOpen(false)}
         />
         <DeleteAddOn
+          addOnId={addon.id}
           isOpen={isDeleteModalOpen}
           handleClose={() => setIsDeleteModalOpen(false)}
         />
@@ -93,17 +106,17 @@ const AddOnRow = ({ addon }: { addon: any }) => {
                 {
                   icon: "link",
                   label: "View Demo",
-                  href: "#",
+                  href: addon.demo,
                 },
                 {
                   icon: "view",
                   label: "View Details",
-                  href: link("/addon/:slug", { slug: "redwoodjs" }),
+                  href: link("/addon/:slug", { slug: addon.id }),
                 },
                 {
                   icon: "github",
                   label: "On GitHub",
-                  href: "#",
+                  href: `https://github.com/${addon.owner}/${addon.repo}`,
                 },
                 {
                   icon: "edit",

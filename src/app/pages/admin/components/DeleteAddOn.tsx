@@ -5,11 +5,16 @@ import { Window } from "@/app/components/Window";
 import { useEscapeKey, useOutsideClick } from "captain-react-hooks";
 import { AnimatePresence } from "motion/react";
 import { useRef } from "react";
+import { toast } from "sonner";
+import { deleteAddOn } from "../actions";
+import { link } from "@/app/shared/links";
 
 const DeleteAddOn = ({
+  addOnId,
   isOpen,
   handleClose,
 }: {
+  addOnId: string;
   isOpen: boolean;
   handleClose: () => void;
 }) => {
@@ -17,6 +22,16 @@ const DeleteAddOn = ({
   useOutsideClick(handleClose, windowRef);
 
   useEscapeKey(handleClose);
+
+  const handleSubmit = async (formData: FormData) => {
+    const result = await deleteAddOn(addOnId);
+    if (result.success) {
+      toast.success("Add-on deleted successfully");
+      window.location.href = link("/admin/");
+    } else {
+      toast.error("Failed to delete add-on");
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -44,12 +59,22 @@ const DeleteAddOn = ({
                     <p className="font-sans">This action cannot be undone.</p>
                   </div>
                 </div>
-                <div className="button-group up justify-end">
-                  <button className="button" onClick={handleClose}>
+                <form
+                  className="button-group up justify-end"
+                  action={handleSubmit}
+                >
+                  <input type="hidden" name="id" value={addOnId} />
+                  <button
+                    className="button"
+                    role="button"
+                    onClick={handleClose}
+                  >
                     Cancel
                   </button>
-                  <button className="button primary">Delete</button>
-                </div>
+                  <button className="button primary" type="submit">
+                    Delete
+                  </button>
+                </form>
               </div>
             </Window>
           </div>

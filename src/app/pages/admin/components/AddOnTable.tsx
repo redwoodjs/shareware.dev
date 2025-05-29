@@ -3,13 +3,17 @@
 import { useState } from "react";
 import { AddOnRow } from "./AddOnRow";
 import { Reorder } from "motion/react";
+import { AddOnWithCategoryAndStatus } from "../DashboardPage";
+import { Category } from "@generated/prisma";
 
-const AddOnTable = () => {
-  const [addons, setAddons] = useState([
-    { id: 1, name: "Addon 1" },
-    { id: 2, name: "Addon 2" },
-    { id: 3, name: "Addon 3" },
-  ]);
+const AddOnTable = ({
+  addOns,
+  categories,
+}: {
+  addOns: AddOnWithCategoryAndStatus[];
+  categories: Category[];
+}) => {
+  const [addons, setAddons] = useState(addOns);
 
   return (
     <div className="admin-addons-table">
@@ -17,7 +21,7 @@ const AddOnTable = () => {
       <div></div>
       <div>Name</div>
       <div>Repo</div>
-      <div>Tags</div>
+      <div>Category</div>
       <div></div>
 
       {/* table body */}
@@ -29,7 +33,7 @@ const AddOnTable = () => {
       >
         {addons.map((addon) => (
           <Reorder.Item key={addon.id} value={addon} className="subgrid">
-            <AddOnRow addon={addon} />
+            <AddOnRow addon={addon} categories={categories} />
           </Reorder.Item>
         ))}
       </Reorder.Group>

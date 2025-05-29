@@ -22,7 +22,7 @@ const Nav = () => {
             </a>
           </li>
           <li>
-            <a href={link("/addon/:slug", { slug: "all" })}>Add Ons</a>
+            <a href={link("/docs/:slug", { slug: "introduction" })}>Add Ons</a>
           </li>
           <li>
             <a href="#">Request an Add On</a>

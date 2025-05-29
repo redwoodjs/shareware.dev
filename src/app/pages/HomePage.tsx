@@ -5,9 +5,20 @@ import { Nav } from "../components/Nav";
 import { AddOnRow } from "../components/AddOnRow";
 import { Faq } from "../components/Faq";
 import { AdminBar } from "../components/AdminBar";
-// import { Toaster } from "../components/Toaster";
+import { Toaster } from "../components/Toaster";
+import { db } from "@/db";
 
-const HomePage = ({ ctx }: RequestInfo) => {
+const HomePage = async ({ ctx }: RequestInfo) => {
+  // get all the featured add ons
+  const featuredAddOns = await db.addOn.findMany({
+    where: {
+      featured: true,
+      status: {
+        name: "approved",
+      },
+    },
+  });
+
   return (
     <div>
       {/* hero */}
@@ -49,11 +60,13 @@ const HomePage = ({ ctx }: RequestInfo) => {
       <div className="bg-[url('/images/separator.svg')] bg-repeat-x h-[35px] bg-center"></div>
 
       {/* add-on list */}
-      <section className="flex flex-col gap-[140px] pt-[100px] page-width mb-[100px]">
-        <AddOnRow />
-        <AddOnRow />
-        <AddOnRow />
-      </section>
+      {featuredAddOns && (
+        <section className="flex flex-col gap-[140px] pt-[100px] page-width mb-[100px]">
+          {featuredAddOns.map((addon) => (
+            <AddOnRow key={addon.id} addon={addon} />
+          ))}
+        </section>
+      )}
 
       {/* frequently asked questions */}
       <section className="page-margin mb-[120px]">
@@ -127,9 +140,9 @@ const HomePage = ({ ctx }: RequestInfo) => {
           ? `You are logged in as user ${ctx.user.username}`
           : "You are not logged in"}
       </p> */}
-      <AdminBar hideAddOnControls={true} />
+      <AdminBar hideAddOnControls={true} user={ctx.user} />
       <Footer />
-      {/* <Toaster /> */}
+      <Toaster />
     </div>
   );
 };

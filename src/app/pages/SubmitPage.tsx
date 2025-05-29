@@ -1,8 +1,9 @@
 import { AdminBar } from "../components/AdminBar";
 import { InteriorLayout } from "../layouts/InteriorLayout";
 import { link } from "../shared/links";
+import { RequestInfo } from "rwsdk/worker";
 
-const SubmitPage = () => {
+const SubmitPage = ({ ctx }: RequestInfo) => {
   return (
     <InteriorLayout>
       <div className="half-grid">
@@ -107,7 +108,7 @@ const SubmitPage = () => {
           </form>
         </div>
       </div>
-      <AdminBar />
+      <AdminBar user={ctx.user} hideAddOnControls={true} />
     </InteriorLayout>
   );
 };

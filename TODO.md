@@ -2,3 +2,4 @@
 - [ ] Add badge to sidebar
 - [ ] Display roles on the user list
 - [ ] Add SEO Page Titles
+- [ ] When a new add on is created, it should add a GitHub issue

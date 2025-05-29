@@ -1,8 +1,9 @@
+import { AddOn } from "@generated/prisma";
 import { link } from "../shared/links";
 import { CopyCode } from "./CopyCode";
 import { Window } from "./Window";
 
-const AddOnRow = () => {
+const AddOnRow = ({ addon }: { addon: AddOn }) => {
   return (
     <div className="grid grid-cols-2 gap-12">
       <div>
@@ -15,22 +16,27 @@ const AddOnRow = () => {
         </Window>
       </div>
       <div>
-        <h2 className="subheading mb-4">Feature Requests</h2>
+        <h2 className="subheading mb-4">{addon.name}</h2>
         <p className="font-chicago text-xl mb-4 tracking-tight">
-          Let users suggest and vote on new features.
+          {addon.description}
         </p>
         <div className="mb-4">
-          <CopyCode code="npm install @redwoodjs/sdk-add-on-feature-requests" />
+          <CopyCode
+            code={`npx rwsdk-tools install ${addon.owner}/${addon.repo}`}
+          />
         </div>
-        <p>
-          Complete voting system with user authentication, comment threads,
-          status tracking, and admin dashboard. Users can submit ideas, vote on
-          favorites, and track development progress.
-        </p>
+        <p>{addon.description}</p>
         <div className="button-group">
-          <button className="button">Live Demo</button>
           <a
-            href={link("/addon/:slug", { slug: "test" })}
+            href={addon.demo}
+            target="_blank"
+            rel="noreferrer"
+            className="button"
+          >
+            Live Demo
+          </a>
+          <a
+            href={link("/addon/:slug", { slug: addon.id })}
             className="button primary"
           >
             View Details

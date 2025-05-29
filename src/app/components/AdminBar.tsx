@@ -6,20 +6,30 @@ import { Avatar } from "./Avatar";
 import { Dropdown } from "./Dropdown";
 import { Icon } from "./Icon";
 import { useEscapeKey, useOutsideClick } from "captain-react-hooks";
-import { User } from "@/db";
+import { Category, User } from "@/db";
 import { toggleAdminBar } from "../pages/actions";
+import { EditAddOnSheet } from "../pages/admin/components/EditAddOnSheet";
+import { AddOnWithStatusAndCategory } from "../pages/AddonPage";
+import { updateAddOnFeatured, updateAddOnStatus } from "../pages/admin/actions";
+import { toast } from "sonner";
 
 const AdminBar = ({
   user,
+  addOn = undefined,
   hideAddOnControls = true,
   defaultExpanded = false,
+  categories = [],
 }: {
   user: User | null;
+  addOn?: AddOnWithStatusAndCategory | null;
   hideAddOnControls?: boolean;
   defaultExpanded?: boolean;
+  categories: Category[];
 }) => {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
+  const [isFeatured, setIsFeatured] = useState(addOn?.featured ?? false);
   const [isDropdownShowing, setIsDropdownShowing] = useState(false);
+  const [isEditAddOnSheetOpen, setIsEditAddOnSheetOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEscapeKey(() => setIsDropdownShowing(false));
@@ -31,6 +41,26 @@ const AdminBar = ({
     if (user) {
       console.log({ userId: user.id, newIsExpanded });
       await toggleAdminBar(user.id, newIsExpanded);
+    }
+  };
+
+  const handleStatus = async (status: number) => {
+    const result = await updateAddOnStatus(addOn?.id ?? "", status);
+    if (result.success) {
+      toast.success("Add on status updated");
+    } else {
+      toast.error("Failed to update add on status");
+    }
+  };
+
+  const handleFeature = async () => {
+    const currentFeatured = isFeatured;
+    const result = await updateAddOnFeatured(addOn?.id ?? "", !currentFeatured);
+    setIsFeatured(!currentFeatured);
+    if (result.success) {
+      toast.success("Add on featured updated");
+    } else {
+      toast.error("Failed to update add on featured");
     }
   };
 
@@ -49,23 +79,60 @@ const AdminBar = ({
       </a>
       {!hideAddOnControls && (
         <div className="flex items-center justify-center gap-3 flex-1">
-          <button className="admin-bar-button button">
+          <button
+            className={`admin-bar-button button ${
+              addOn?.status.name === "approved" ? "bg-black text-white" : ""
+            }`}
+            onClick={() => handleStatus(3)}
+          >
             <Icon id="check" />
             Approve
           </button>
-          <button className="admin-bar-button button">
+          <button
+            className={`admin-bar-button button ${
+              addOn?.status.name === "pending" ? "bg-black text-white" : ""
+            }`}
+            onClick={() => handleStatus(2)}
+          >
             <Icon id="clock" />
             Mark as Pending
           </button>
-          <button className="admin-bar-button button">
+          <button
+            className={`admin-bar-button button ${
+              addOn?.status.name === "archived" ? "bg-black text-white" : ""
+            }`}
+            onClick={() => handleStatus(1)}
+          >
             <Icon id="archive" />
             Archive
           </button>
-          <button className="admin-bar-button button">
+          <button
+            className={`admin-bar-button button ${
+              isFeatured ? "bg-black text-white" : ""
+            }`}
+            onClick={() => {
+              handleFeature();
+            }}
+          >
             <Icon id="star" />
             Featured
           </button>
-          <button className="admin-bar-button button">
+          {addOn && isEditAddOnSheetOpen && (
+            <EditAddOnSheet
+              addOn={addOn}
+              categories={categories}
+              isOpen={isEditAddOnSheetOpen}
+              handleClose={() => {
+                setIsEditAddOnSheetOpen(false);
+              }}
+            />
+          )}
+          <button
+            className="admin-bar-button button"
+            onClick={() => {
+              setIsEditAddOnSheetOpen(true);
+            }}
+          >
             <Icon id="edit" />
             Edit
           </button>
