@@ -61,7 +61,7 @@ const SubmitPage = () => {
               <input type="url" id="githubUrl" />
             </div>
             <div className="field">
-              <label htmlFor="addonName">Add On Name</label>
+              <label htmlFor="addonName">Add On Package Name</label>
               <input type="text" id="addonName" />
             </div>
             <div className="field">

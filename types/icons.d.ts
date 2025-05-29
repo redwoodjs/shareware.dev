@@ -10,8 +10,10 @@ export type IconName =
 	| "dotsHorizontal"
 	| "edit"
 	| "externalLink"
+	| "gear"
 	| "github"
 	| "link"
+	| "logout"
 	| "minus"
 	| "moon"
 	| "plus"
@@ -19,4 +21,5 @@ export type IconName =
 	| "star"
 	| "sun"
 	| "trash"
+	| "user"
 	| "view";

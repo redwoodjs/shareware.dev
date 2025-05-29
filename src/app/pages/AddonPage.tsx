@@ -1,3 +1,4 @@
+import { AdminBar } from "../components/AdminBar";
 import { Credit } from "../components/Credit";
 import { Icon } from "../components/Icon";
 import { InteriorLayout } from "../layouts/InteriorLayout";
@@ -95,6 +96,7 @@ const AddonPage = () => {
           </p>
         </div>
       </div>
+      <AdminBar />
     </InteriorLayout>
   );
 };

@@ -4,7 +4,7 @@ const AdminNav = () => {
   return (
     <aside className="aside-nav">
       <ul className="font-chicago flex flex-col gap-y-3">
-        <li className="header">
+        <li>
           <a href={link("/admin/")}>Add Ons</a>
         </li>
         <li>

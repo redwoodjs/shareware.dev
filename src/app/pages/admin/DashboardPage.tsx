@@ -1,6 +1,7 @@
 import { AdminLayout } from "@/app/layouts/AdminLayout";
 import { link } from "@/app/shared/links";
-import { AddOnRow } from "./components/AddOnRow";
+import { AddOnTable } from "./components/AddOnTable";
+import { NewAddOnButton } from "./components/NewAddOnButton";
 
 const DashboardPage = () => {
   return (
@@ -19,23 +20,11 @@ const DashboardPage = () => {
             <a href={`${link("/admin/")}?status=approved`} className="button">
               Approved
             </a>
+            <NewAddOnButton />
           </div>
         </div>
 
-        {/* table */}
-        <div className="admin-addons-table">
-          {/* table header */}
-          <div></div>
-          <div>Name</div>
-          <div>Repo</div>
-          <div>Tags</div>
-          <div></div>
-
-          {/* table body */}
-          <AddOnRow />
-          <AddOnRow />
-          <AddOnRow />
-        </div>
+        <AddOnTable />
       </div>
     </AdminLayout>
   );

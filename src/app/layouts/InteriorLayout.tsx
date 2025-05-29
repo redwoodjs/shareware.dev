@@ -1,3 +1,4 @@
+import { AdminBar } from "../components/AdminBar";
 import { AsideNav } from "../components/AsideNav";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";

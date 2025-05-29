@@ -1,6 +1,8 @@
+import { IconName } from "../../../types/icons";
+
 interface Props {
   size?: number;
-  id: string;
+  id: IconName;
   className?: string;
 }
 

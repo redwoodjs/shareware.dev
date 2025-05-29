@@ -37,7 +37,7 @@ const Search = () => {
       {isOpen && (
         <>
           <Overlay />
-          <div className="center full-screen z-[var(--z-index-window)]">
+          <div className="flex justify-center mt-[150px] full-screen z-[var(--z-index-window)]">
             <div className="max-w-[815px] w-full relative z-[var(--z-index-window)]">
               <Window title="Search" closable onClose={() => setIsOpen(false)}>
                 <>
@@ -48,7 +48,23 @@ const Search = () => {
                     <button className="button primary">Search</button>
                   </div>
                   {/* results */}
-                  <div className="border-1 border-black py-3 px-4 flex flex-col gap-y-3">
+                  <div className="border-1 border-black py-3 px-4 flex flex-col gap-y-3 max-h-[500px] overflow-y-scroll">
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
+                    <SearchResultsRow />
                     <SearchResultsRow />
                     <SearchResultsRow />
                     <SearchResultsRow />

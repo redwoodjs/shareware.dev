@@ -2,11 +2,12 @@
 
 import { Icon } from "@/app/components/Icon";
 import { useState } from "react";
+import { IconName } from "../../../types/icons";
 
 type DropdownItem = {
   label?: string;
   href?: string;
-  icon?: string;
+  icon?: null | IconName;
   className?: string;
   handleClick?: () => void;
   selected?: boolean;
@@ -16,10 +17,12 @@ const Dropdown = ({
   options,
   callback = () => {},
   showSeparator = false,
+  selectable = false,
 }: {
   options: DropdownItem[];
   callback?: () => void;
   showSeparator?: boolean;
+  selectable?: boolean;
 }) => {
   const [selected, setSelected] = useState<DropdownItem | null>(
     options.find((option) => option.selected) || null
@@ -57,7 +60,9 @@ const Dropdown = ({
             <button
               onClick={() => {
                 option.handleClick?.();
-                setSelected(option);
+                if (selectable) {
+                  setSelected(option);
+                }
                 callback();
               }}
               className={`dropdown-item cursor-pointer ${

@@ -73,9 +73,11 @@
 
 @layer base {
   :root {
+    --z-index-window-buttons: 99999;
     --z-index-window: 9999;
-    --z-index-overlay: 9998;
-    --z-index-dropdown: 9997;
+    --z-index-overlay: 9997;
+    --z-index-dropdown: 9996;
+    --z-index-admin-bar: 9995;
     --z-index-dropdown-trigger: 10;
   }
 
@@ -127,6 +129,13 @@
     @apply mb-6;
   }
 
+  input[type="radio"] {
+    @apply appearance-none bg-[url('/images/radio--unchecked.svg')] bg-no-repeat bg-center size-6 cursor-pointer;
+    &:checked {
+      @apply bg-[url('/images/radio--checked.svg')] bg-no-repeat bg-center;
+    }
+  }
+
   .button-group {
     @apply flex items-center gap-2;
   }
@@ -166,6 +175,30 @@
     @apply appearance-none bg-[url('/images/checkbox--unchecked.svg')] bg-no-repeat bg-center size-6 cursor-pointer;
     &:checked {
       @apply bg-[url('/images/checkbox--checked.svg')] bg-no-repeat bg-center;
+    }
+  }
+
+  .radio-button-button:has(input[type="radio"]:checked) {
+    @apply bg-black text-white;
+  }
+
+  .toggle-button {
+    .switch {
+      @apply bg-black w-10 h-6 relative rounded-full;
+      /* toggled off */
+      &:after {
+        @apply content-[''] size-4 bg-white rounded-full absolute top-1/2 -translate-y-1/2 left-1;
+      }
+    }
+    /* toggled on */
+    input[type="checkbox"]:checked + label .switch {
+      @apply bg-fern;
+    }
+    input[type="checkbox"]:checked + label .switch:after {
+      @apply left-[calc(100%-20px)];
+    }
+    label {
+      @apply flex items-center gap-3 cursor-pointer;
     }
   }
 
@@ -244,6 +277,10 @@
 
   .show-separator li:last-child {
     @apply border-t-1 border-black border-dashed;
+  }
+
+  .admin-bar-button {
+    @apply center gap-1 min-w-[150px];
   }
 
   .copy-code {
@@ -363,6 +400,23 @@
     /* first five cells  */
     > div:nth-child(-n + 5) {
       @apply font-chicago -mb-2;
+    }
+
+    .subgrid {
+      @apply grid grid-cols-subgrid col-span-5;
+    }
+  }
+
+  .admin-users-table {
+    /* the first and last column have to include the row padding */
+    @apply grid grid-cols-[1fr_1fr_60px] gap-4 mb-20;
+    /* first three cells  */
+    > div:nth-child(-n + 3) {
+      @apply font-chicago -mb-2;
+    }
+
+    .subgrid {
+      @apply grid grid-cols-subgrid col-span-3;
     }
   }
 }

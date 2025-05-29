@@ -4,9 +4,7 @@ const AsideNav = () => {
   return (
     <aside className="aside-nav">
       <ul className="font-chicago flex flex-col gap-y-3">
-        <li className="header">
-          <a href={link("/docs/:slug", { slug: "all" })}>Getting Started</a>
-        </li>
+        <li className="header">Getting Started</li>
         <li>
           <a href={link("/docs/:slug", { slug: "all" })}>Introduction</a>
         </li>

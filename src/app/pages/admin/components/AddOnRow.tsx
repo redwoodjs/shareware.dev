@@ -4,20 +4,38 @@ import { Badge } from "@/app/components/Badge";
 import { Credit } from "@/app/components/Credit";
 import { Dropdown } from "@/app/components/Dropdown";
 import { Icon } from "@/app/components/Icon";
+import { EditAddOnSheet } from "./EditAddOnSheet";
 import { link } from "@/app/shared/links";
 import { useEscapeKey, useOutsideClick } from "captain-react-hooks";
-import { useRef, useState } from "react";
+import { useDragControls, motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
-const AddOnRow = () => {
+const AddOnRow = ({ addon }: { addon: any }) => {
   const [isDropdownShowing, setIsDropdownShowing] = useState(false);
+  const [isEditAddOnSheetShowing, setIsEditAddOnSheetShowing] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const dragControls = useDragControls();
 
   useEscapeKey(() => setIsDropdownShowing(false));
   useOutsideClick(() => setIsDropdownShowing(false), menuRef);
 
+  useEffect(() => {
+    console.log({ isEditAddOnSheetShowing });
+  }, [isEditAddOnSheetShowing]);
+
   return (
-    <div className="bg-white relative py-3 px-6 col-span-5 grid grid-cols-subgrid items-center">
-      <button className="absolute -left-3 cursor-grab">
+    <motion.div
+      className="bg-white relative py-3 px-6 subgrid items-center"
+      dragControls={dragControls}
+      dragListener={false}
+    >
+      <button
+        className="absolute -left-3 cursor-grab"
+        onPointerDown={(e) => {
+          e.preventDefault();
+          dragControls.start(e);
+        }}
+      >
         <img src="/images/move.svg" alt="Reorder Add On Row" />
       </button>
       <div>
@@ -28,7 +46,7 @@ const AddOnRow = () => {
           href="#"
           className="text-link underline hover:text-link-hover font-sans font-bold text-lg"
         >
-          Suggest
+          {addon.name}
         </a>
       </div>
       <div>
@@ -54,6 +72,10 @@ const AddOnRow = () => {
         >
           <Icon id="dotsHorizontal" />
         </button>
+        <EditAddOnSheet
+          isOpen={isEditAddOnSheetShowing}
+          handleClose={() => setIsEditAddOnSheetShowing(false)}
+        />
         {isDropdownShowing && (
           <div className="absolute top-11 right-0 z-[var(--z-index-dropdown)]">
             <Dropdown
@@ -77,7 +99,11 @@ const AddOnRow = () => {
                 {
                   icon: "edit",
                   label: "Edit",
-                  href: "#",
+                  handleClick: () => {
+                    console.log("edit");
+                    setIsEditAddOnSheetShowing(true);
+                    setIsDropdownShowing(false);
+                  },
                 },
                 {
                   icon: "trash",
@@ -89,7 +115,7 @@ const AddOnRow = () => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
