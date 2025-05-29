@@ -6,18 +6,37 @@ import { Avatar } from "./Avatar";
 import { Dropdown } from "./Dropdown";
 import { Icon } from "./Icon";
 import { useEscapeKey, useOutsideClick } from "captain-react-hooks";
+import { User } from "@/db";
+import { toggleAdminBar } from "../pages/actions";
 
 const AdminBar = ({
+  user,
   hideAddOnControls = true,
+  defaultExpanded = false,
 }: {
+  user: User | null;
   hideAddOnControls?: boolean;
+  defaultExpanded?: boolean;
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
   const [isDropdownShowing, setIsDropdownShowing] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEscapeKey(() => setIsDropdownShowing(false));
   useOutsideClick(() => setIsDropdownShowing(false), dropdownRef);
+
+  const handleToggleAdminBar = async () => {
+    const newIsExpanded = !isExpanded;
+    setIsExpanded((prevValue) => !prevValue);
+    if (user) {
+      console.log({ userId: user.id, newIsExpanded });
+      await toggleAdminBar(user.id, newIsExpanded);
+    }
+  };
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <div
@@ -58,8 +77,8 @@ const AdminBar = ({
           onClick={() => setIsDropdownShowing((prevValue) => !prevValue)}
         >
           <Avatar
-            src="/images/placeholder-avatar.png"
-            alt="Amy Dutton"
+            src={user.avatar || ""}
+            alt={`${user.firstName} ${user.lastName}`}
             size={56}
           />
         </button>
@@ -69,17 +88,17 @@ const AdminBar = ({
               options={[
                 {
                   label: "Users",
-                  href: "/admin/users",
+                  href: link("/admin/users"),
                   icon: "user",
                 },
                 {
                   label: "Settings",
-                  href: "/admin/settings",
+                  href: link("/admin/settings"),
                   icon: "gear",
                 },
                 {
                   label: "Logout",
-                  href: "/admin/logout",
+                  href: link("/logout"),
                   icon: "logout",
                 },
               ]}
@@ -87,10 +106,10 @@ const AdminBar = ({
           </div>
         )}
       </div>
-      <div className="absolute right-0 top-0 h-[86px] block">
+      <div className="absolute right-0 top-0 h-[80px] block">
         <button
           className="cursor-pointer hover:bg-black hover:text-white h-full"
-          onClick={() => setIsExpanded((prevValue) => !prevValue)}
+          onClick={handleToggleAdminBar}
         >
           <Icon
             id="chevronDown"

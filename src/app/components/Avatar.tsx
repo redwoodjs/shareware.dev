@@ -8,7 +8,7 @@ const Avatar = ({ src = "", alt, size = 32 }: AvatarProps) => {
   if (!src) {
     return (
       <div
-        className="rounded-full bg-black"
+        className="rounded-full bg-link center"
         style={{ width: size, height: size }}
       >
         <span className="text-white font-chicago uppercase">

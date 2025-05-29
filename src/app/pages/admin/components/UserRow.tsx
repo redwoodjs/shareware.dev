@@ -7,8 +7,11 @@ import { useOutsideClick } from "captain-react-hooks";
 import { useRef, useState } from "react";
 import { EditUserSheet } from "./EditUserSheet";
 import { DeleteUser } from "./DeleteUser";
+import { UserWithRole } from "@/worker";
+import { Badge } from "@/app/components/Badge";
+import { Role } from "@generated/prisma";
 
-const UserRow = () => {
+const UserRow = ({ user, roles }: { user: UserWithRole; roles: Role[] }) => {
   const [isEditUserSheetOpen, setIsEditUserSheetOpen] = useState(false);
   const [isDropdownShowing, setIsDropdownShowing] = useState(false);
   const [isDeleteUserOpen, setIsDeleteUserOpen] = useState(false);
@@ -20,19 +23,15 @@ const UserRow = () => {
     <div className="bg-white relative py-3 px-6 subgrid items-center">
       <div className="font-bold text-lg flex items-center gap-2">
         <Avatar
-          src="/images/placeholder-avatar.png"
-          alt="Amy Dutton"
+          src={user.avatar || ""}
+          alt={`${user.firstName} ${user.lastName}`}
           size={32}
         />
-        Amy Dutton
+        {user.firstName} {user.lastName}
       </div>
+      <div>{user.email}</div>
       <div>
-        <a
-          href="mailto:amy@redwoodjs.com"
-          className="text-link hover:text-link-hover underline font-bold"
-        >
-          amy@redwoodjs.com
-        </a>
+        <Badge label={user.role.name} className="capitalize" />
       </div>
       <div className="relative" ref={menuRef}>
         <button
@@ -46,10 +45,13 @@ const UserRow = () => {
         <EditUserSheet
           isOpen={isEditUserSheetOpen}
           handleClose={() => setIsEditUserSheetOpen(false)}
+          user={user}
+          roles={roles}
         />
         <DeleteUser
           isOpen={isDeleteUserOpen}
           handleClose={() => setIsDeleteUserOpen(false)}
+          user={user}
         />
         {isDropdownShowing && (
           <div className="absolute top-11 right-0 z-[var(--z-index-dropdown)]">

@@ -1,11 +1,24 @@
 "use client";
 
+import { toast } from "sonner";
+import { newSubscriber } from "../pages/actions";
 import { Window } from "./Window";
 
 export const Newsletter = () => {
+  const handleSubmit = async (formData: FormData) => {
+    const result = await newSubscriber(formData);
+    if (result?.error) {
+      toast.error(result.error);
+    } else {
+      toast.success("You're subscribed!");
+    }
+  };
   return (
     <Window title="Don't Build it Twice">
-      <div className="grid grid-cols-[3fr_1fr] gap-x-[100px] newsletter px-10 py-4">
+      <form
+        action={handleSubmit}
+        className="grid grid-cols-[3fr_1fr] gap-x-[100px] newsletter px-10 py-4"
+      >
         <div className="col-span-2 flex gap-x-4 pb-12">
           <img
             src="/images/info-icon.png"
@@ -20,22 +33,28 @@ export const Newsletter = () => {
         <div>
           <div className="field">
             <label htmlFor="name">First Name</label>
-            <input type="text" id="name" />
+            <input type="text" id="name" name="firstName" />
           </div>
 
           <div className="field">
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" />
+            <input type="email" id="email" name="email" />
           </div>
         </div>
         <div>
-          <button className="newsletter-button primary w-[140px]">
+          <button type="submit" className="newsletter-button primary w-[140px]">
             <span>Subscribe</span>
           </button>
           <br />
-          <button className="newsletter-button w-[140px]">Cancel</button>
+          <button
+            type="reset"
+            role="button"
+            className="newsletter-button w-[140px]"
+          >
+            Cancel
+          </button>
         </div>
-      </div>
+      </form>
     </Window>
   );
 };

@@ -1,11 +1,11 @@
 {
-  "name": "@redwoodjs/starter-standard",
+  "name": "addons",
   "version": "1.0.0",
   "description": "Build fast, server-driven webapps on Cloudflare with SSR, RSC, and realtime. ",
   "main": "index.js",
   "type": "module",
   "keywords": [],
-  "author": "",
+  "author": "Amy (Haywood) Dutton - @ahaywood",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -33,6 +33,7 @@
     "@simplewebauthn/browser": "^13.1.0",
     "@simplewebauthn/server": "^13.1.1",
     "@tailwindcss/vite": "^4.1.7",
+    "bcryptjs": "^3.0.2",
     "captain-react-hooks": "^1.0.0",
     "motion": "^12.15.0",
     "resend": "^4.5.1",

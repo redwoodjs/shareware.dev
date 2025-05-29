@@ -2,8 +2,9 @@ import { AdminBar } from "../components/AdminBar";
 import { Credit } from "../components/Credit";
 import { Icon } from "../components/Icon";
 import { InteriorLayout } from "../layouts/InteriorLayout";
+import { RequestInfo } from "rwsdk/worker";
 
-const AddonPage = () => {
+const AddonPage = ({ ctx }: RequestInfo) => {
   return (
     <InteriorLayout>
       <div className="half-grid">
@@ -96,7 +97,11 @@ const AddonPage = () => {
           </p>
         </div>
       </div>
-      <AdminBar hideAddOnControls={false} />
+      <AdminBar
+        hideAddOnControls={false}
+        user={ctx.user}
+        defaultExpanded={ctx.user?.isAdminBarShowing}
+      />
     </InteriorLayout>
   );
 };

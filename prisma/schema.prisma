@@ -27,8 +27,8 @@ model AddOn {
   firstName   String
   lastName    String
   email       String
-  avatar      String
-  cover       String
+  avatar      String?
+  cover       String?
   demo        String
   owner       String
   repo        String
@@ -59,6 +59,12 @@ model Category {
   addOns      AddOn[]
 }
 
+model Role {
+  id          Int      @id @default(autoincrement())
+  name        String
+  users       User[]
+}
+
 model Status {
   id          Int      @id @default(autoincrement())
   name        String
@@ -84,10 +90,19 @@ model Tag {
 model User {
   id          String      @id @default(uuid()) // User ID (UUID-based)
   email    String      @unique
+  avatar   String?
   password  String
   firstName String
   lastName  String
-  role      String
-  status    String
+  isAdminBarShowing Boolean @default(false)
+  notifyNewAddOns Boolean @default(true)
+  role      Role      @relation(fields: [roleId], references: [id])
+  roleId    Int
+  verified  Boolean     @default(false)
+  token     String? @unique
+  tokenExpiresAt   DateTime?
   createdAt   DateTime    @default(now())
+
+  @@unique([email, token])
+  @@index([email, token])
 }

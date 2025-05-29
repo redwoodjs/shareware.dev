@@ -2,23 +2,32 @@ import { AdminNav } from "../pages/admin/components/AdminNav";
 import { Header } from "../components/Header";
 import { Avatar } from "../components/Avatar";
 import { link } from "../shared/links";
+import { UserWithRole } from "@/worker";
 import { Toaster } from "../components/Toaster";
 
-const AdminLayout = ({ children }: { children: React.ReactNode }) => {
+const AdminLayout = ({
+  children,
+  user,
+}: {
+  children: React.ReactNode;
+  user: UserWithRole;
+}) => {
   return (
     <div>
+      <Toaster />
       <Header />
       <div className="grid grid-cols-[270px_1fr] min-h-[calc(100vh_-_75px)]">
-        <div className="border-r-2 border-black h-full flex flex-col justify-between">
-          <div className="pt-10 pb-20 px-10">
+        <div className="border-r-2 border-black">
+          <div className="pt-10 pb-20 px-10 sticky top-0">
             <AdminNav />
           </div>
-          <div className="py-5 px-10 flex gap-5 items-center border-t-2 border-black border-dashed">
+          {/* account bar */}
+          <div className="py-5 px-10 flex gap-5 items-center border-t-2 border-black border-dashed fixed bottom-0 w-[268px]">
             <div className="flex-shrink-0">
               <a href={link("/admin/settings")}>
                 <Avatar
-                  src="/images/placeholder-avatar.png"
-                  alt="John Doe"
+                  src={user.avatar || ""}
+                  alt={`${user.firstName} ${user.lastName}`}
                   size={56}
                 />
               </a>
@@ -29,7 +38,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                   href={link("/admin/settings")}
                   className="hover:text-link hover:underline"
                 >
-                  John Doe
+                  {user.firstName} {user.lastName}
                 </a>
               </div>
               <div className="text-sm">
@@ -45,7 +54,6 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
         <div className="page-margin">{children}</div>
       </div>
-      <Toaster />
     </div>
   );
 };

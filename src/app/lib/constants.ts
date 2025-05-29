@@ -1,4 +1,5 @@
 export const constants = Object.freeze({
+  BASE_URL: "https://addons.ahhacreative.workers.dev",
   GITHUB: "https://github.com/redwoodjs",
   TWITTER: "https://twitter.com/redwoodjs",
   LINKEDIN: "https://www.linkedin.com/company/redwoodjs",

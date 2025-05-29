@@ -181,8 +181,22 @@
     }
   }
 
+  input[type="radio"] {
+    @apply appearance-none bg-[url('/images/radio--unchecked.svg')] bg-no-repeat bg-center size-6 cursor-pointer;
+    &:checked {
+      @apply bg-[url('/images/radio--checked.svg')] bg-no-repeat bg-center;
+    }
+  }
+
   .radio-button-button:has(input[type="radio"]:checked) {
     @apply bg-black text-white;
+  }
+
+  .fieldset {
+    @apply border-2 border-black px-3 pt-4 relative;
+    legend {
+      @apply uppercase font-chicago bg-white absolute -top-3 left-2 px-2;
+    }
   }
 
   .toggle-button {
@@ -205,7 +219,7 @@
     }
   }
 
-  ol {
+  .content ol {
     counter-reset: circle-numbers;
     @apply list-none m-0 p-0;
     li {
@@ -431,14 +445,14 @@
 
   .admin-users-table {
     /* the first and last column have to include the row padding */
-    @apply grid grid-cols-[1fr_1fr_60px] gap-4 mb-20;
-    /* first three cells  */
-    > div:nth-child(-n + 3) {
+    @apply grid grid-cols-[1fr_1fr_100px_60px] gap-4 mb-20;
+    /* first 4 cells  */
+    > div:nth-child(-n + 4) {
       @apply font-chicago -mb-2;
     }
 
     .subgrid {
-      @apply grid grid-cols-subgrid col-span-3;
+      @apply grid grid-cols-subgrid col-span-4;
     }
   }
 }

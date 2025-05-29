@@ -6,7 +6,7 @@ const SubmitPage = () => {
   return (
     <InteriorLayout>
       <div className="half-grid">
-        <div className="half-grid--left pr-10">
+        <div className="half-grid--left pr-10 content">
           <h1 className="page-title">Submit Your Add On</h1>
           <h2 className="subheading mb-4">
             Help Build the RedwoodSDK Ecosystem

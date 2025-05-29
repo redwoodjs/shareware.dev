@@ -1,3 +1,4 @@
 - [ ] Add Fathom Analytics
-- [ ] Formatting on the Submit Your Add On Page
-- [ ] Primary Button styling isn't consistent
+- [ ] Add badge to sidebar
+- [ ] Display roles on the user list
+- [ ] Add SEO Page Titles

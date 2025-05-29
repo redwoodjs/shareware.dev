@@ -5,7 +5,7 @@ import { Nav } from "../components/Nav";
 import { AddOnRow } from "../components/AddOnRow";
 import { Faq } from "../components/Faq";
 import { AdminBar } from "../components/AdminBar";
-import { Toaster } from "../components/Toaster";
+// import { Toaster } from "../components/Toaster";
 
 const HomePage = ({ ctx }: RequestInfo) => {
   return (
@@ -129,7 +129,7 @@ const HomePage = ({ ctx }: RequestInfo) => {
       </p> */}
       <AdminBar hideAddOnControls={true} />
       <Footer />
-      <Toaster />
+      {/* <Toaster /> */}
     </div>
   );
 };

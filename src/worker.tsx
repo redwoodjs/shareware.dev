@@ -6,19 +6,26 @@ import { setCommonHeaders } from "@/app/headers";
 import { authRoutes } from "@/app/pages/auth/routes";
 import { sessions, setupSessionStore } from "./session/store";
 import { Session } from "./session/durableObject";
-import { type User, db, setupDb } from "@/db";
+import { Role, type User, db, setupDb } from "@/db";
 import { env } from "cloudflare:workers";
 import { LegalPage } from "./app/pages/LegalPage";
 import { AddonPage } from "./app/pages/AddonPage";
 import { DocsPage } from "./app/pages/DocsPage";
 import { SubmitPage } from "./app/pages/SubmitPage";
 import { adminRoutes } from "./app/pages/admin/routes";
+import { Prisma } from "@generated/prisma";
 
 export { SessionDurableObject } from "./session/durableObject";
 
+export type UserWithRole = Prisma.UserGetPayload<{
+  include: {
+    role: true;
+  };
+}>;
+
 export type AppContext = {
   session: Session | null;
-  user: User | null;
+  user: UserWithRole | null;
 };
 
 export default defineApp([
@@ -48,6 +55,9 @@ export default defineApp([
         where: {
           id: ctx.session.userId,
         },
+        include: {
+          role: true,
+        },
       });
     }
   },
@@ -55,7 +65,7 @@ export default defineApp([
     index(HomePage),
     route("/addon/:slug", AddonPage),
     route("/docs", DocsPage),
-    route("/submit", SubmitPage),
+    route("/submit", [SubmitPage]),
     route("/legal/:slug", LegalPage),
     route("/docs/:slug", DocsPage),
     ...authRoutes,
