@@ -9,10 +9,12 @@ import { link } from "@/app/shared/links";
 import { useEscapeKey, useOutsideClick } from "captain-react-hooks";
 import { useDragControls, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { DeleteAddOn } from "./DeleteAddOn";
 
 const AddOnRow = ({ addon }: { addon: any }) => {
   const [isDropdownShowing, setIsDropdownShowing] = useState(false);
   const [isEditSheetOpen, setIsEditSheetOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const dragControls = useDragControls();
 
@@ -79,6 +81,10 @@ const AddOnRow = ({ addon }: { addon: any }) => {
           isOpen={isEditSheetOpen}
           handleClose={() => setIsEditSheetOpen(false)}
         />
+        <DeleteAddOn
+          isOpen={isDeleteModalOpen}
+          handleClose={() => setIsDeleteModalOpen(false)}
+        />
         {isDropdownShowing && (
           <div className="absolute top-11 right-0 z-[var(--z-index-dropdown)]">
             <Dropdown
@@ -111,6 +117,10 @@ const AddOnRow = ({ addon }: { addon: any }) => {
                   icon: "trash",
                   label: "Delete",
                   className: "text-destructive",
+                  handleClick: () => {
+                    setIsDeleteModalOpen(true);
+                    setIsDropdownShowing(false);
+                  },
                 },
               ]}
             />

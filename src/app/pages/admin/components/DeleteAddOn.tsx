@@ -6,7 +6,7 @@ import { useEscapeKey, useOutsideClick } from "captain-react-hooks";
 import { AnimatePresence } from "motion/react";
 import { useRef } from "react";
 
-const DeleteUser = ({
+const DeleteAddOn = ({
   isOpen,
   handleClose,
 }: {
@@ -39,7 +39,7 @@ const DeleteUser = ({
                   </div>
                   <div className="flex-1">
                     <p className="font-chicago mb-3 text-destructive">
-                      Are you sure you want to delete this User?
+                      Are you sure you want to delete this Add On?
                     </p>
                     <p className="font-sans">This action cannot be undone.</p>
                   </div>
@@ -59,4 +59,4 @@ const DeleteUser = ({
   );
 };
 
-export { DeleteUser };
+export { DeleteAddOn };
