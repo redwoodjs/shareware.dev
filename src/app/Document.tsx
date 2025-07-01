@@ -10,10 +10,19 @@ export const Document: React.FC<{ children: React.ReactNode }> = ({
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>RWSDK Add Ons</title>
       <link rel="modulepreload" href="/src/client.tsx" />
+
+      {/* Fathom Analytics */}
+      <script
+        src="https://cdn.usefathom.com/script.js"
+        data-site="NWQXOCYG"
+        defer
+      ></script>
     </head>
     <body>
       <div id="root">{children}</div>
       <script>import("/src/client.tsx")</script>
+      {/* KWES FORMS */}
+      <script src="https://kwesforms.com/v2/kf-script.js" defer></script>
     </body>
   </html>
 );
