@@ -3,7 +3,7 @@
 import { Avatar } from "@/app/components/Avatar";
 import { Dropdown } from "@/app/components/Dropdown";
 import { Icon } from "@/app/components/Icon";
-import { useOutsideClick } from "captain-react-hooks";
+import { useEscapeKey, useOutsideClick } from "captain-react-hooks";
 import { useRef, useState } from "react";
 import { EditUserSheet } from "./EditUserSheet";
 import { DeleteUser } from "./DeleteUser";
@@ -18,6 +18,7 @@ const UserRow = ({ user, roles }: { user: UserWithRole; roles: Role[] }) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   useOutsideClick(() => setIsDropdownShowing(false), menuRef);
+  useEscapeKey(() => setIsDropdownShowing(false));
 
   return (
     <div className="bg-white relative py-3 px-6 subgrid items-center">
