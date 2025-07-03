@@ -17,7 +17,7 @@ const UsersPage = async ({ ctx }: RequestInfo) => {
   const roles = await db.role.findMany();
 
   return (
-    <AdminLayout user={ctx.user as UserWithRole}>
+    <>
       <div className="pt-8">
         {/* heading */}
         <div className="flex justify-between items-center mb-8">
@@ -29,7 +29,7 @@ const UsersPage = async ({ ctx }: RequestInfo) => {
 
         <UserTable users={users} roles={roles} />
       </div>
-    </AdminLayout>
+    </>
   );
 };
 

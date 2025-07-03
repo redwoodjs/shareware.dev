@@ -67,7 +67,7 @@ export const updateUser = async (formData: FormData) => {
   }
 };
 
-const validateGitHubRepo = (githubRepo: string) => {
+export const validateGitHubRepo = (githubRepo: string) => {
   if (!githubRepo) {
     return { error: "Invalid github repo" };
   }

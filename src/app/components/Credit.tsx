@@ -37,7 +37,7 @@ const Credit = ({
     <CreditWrapper link={link}>
       <div className="flex items-center gap-x-2">
         <Avatar {...avatar} />
-        <div className="text-sm font-chicago">
+        <div className="text-sm font-chicago whitespace-nowrap truncate">
           <span>{owner}</span>
           <span> / </span>
           <span>{repo}</span>

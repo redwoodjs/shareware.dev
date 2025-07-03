@@ -81,6 +81,14 @@ const NewAddOnButton = ({ categories }: { categories: Category[] }) => {
                     />
                   </div>
                   <div className="field">
+                    <Toggle
+                      name="official"
+                      value="official"
+                      defaultChecked={false}
+                      label="Official Add On?"
+                    />
+                  </div>
+                  <div className="field">
                     <label htmlFor="firstName">First Name</label>
                     <input
                       type="text"

@@ -38,7 +38,7 @@ const DashboardPage = async ({ ctx, request }: RequestInfo) => {
   });
 
   return (
-    <AdminLayout user={ctx.user as UserWithRole}>
+    <>
       <div className="pt-8">
         {/* heading */}
         <div className="flex justify-between items-center mb-8">
@@ -86,7 +86,7 @@ const DashboardPage = async ({ ctx, request }: RequestInfo) => {
           <div className="italic font-body text-sm">No add-ons found</div>
         )}
       </div>
-    </AdminLayout>
+    </>
   );
 };
 

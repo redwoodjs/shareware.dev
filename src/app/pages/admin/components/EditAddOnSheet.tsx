@@ -87,6 +87,14 @@ const EditAddOnSheet = ({
                   />
                 </div>
                 <div className="field">
+                  <Toggle
+                    name="official"
+                    value="official"
+                    defaultChecked={addOn.official}
+                    label="Official Add-on?"
+                  />
+                </div>
+                <div className="field">
                   <a
                     href="#"
                     className="flex gap-2 text-lg text-link underline font-bold hover:text-link-hover"

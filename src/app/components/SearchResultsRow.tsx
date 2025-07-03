@@ -1,4 +1,5 @@
 import { link } from "../shared/links";
+import { Badge } from "./Badge";
 import { Credit } from "./Credit";
 
 const SearchResultsRow = () => {
@@ -32,7 +33,9 @@ const SearchResultsRow = () => {
         />
       </div>
 
-      <div className="text-sm">Productivity</div>
+      <div className="text-sm">
+        <Badge label="Productivity" />
+      </div>
     </div>
   );
 };

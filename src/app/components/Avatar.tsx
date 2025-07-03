@@ -5,7 +5,7 @@ export interface AvatarProps {
 }
 
 const Avatar = ({ src = "", alt, size = 32 }: AvatarProps) => {
-  if (!src) {
+  if (src === "") {
     return (
       <div
         className="rounded-full bg-link center"

@@ -11,6 +11,9 @@ export const Document: React.FC<{ children: React.ReactNode }> = ({
       <title>RWSDK Add Ons</title>
       <link rel="modulepreload" href="/src/client.tsx" />
 
+      {/* favicon */}
+      <link rel="icon" href="/favicon.png" type="image/png" />
+
       {/* Fathom Analytics */}
       <script
         src="https://cdn.usefathom.com/script.js"
@@ -21,8 +24,6 @@ export const Document: React.FC<{ children: React.ReactNode }> = ({
     <body>
       <div id="root">{children}</div>
       <script>import("/src/client.tsx")</script>
-      {/* KWES FORMS */}
-      <script src="https://kwesforms.com/v2/kf-script.js" defer></script>
     </body>
   </html>
 );

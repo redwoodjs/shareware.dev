@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AddOnRow } from "./AddOnRow";
 import { Reorder } from "motion/react";
 import { AddOnWithCategoryAndStatus } from "../DashboardPage";
@@ -14,6 +14,10 @@ const AddOnTable = ({
   categories: Category[];
 }) => {
   const [addons, setAddons] = useState(addOns);
+
+  useEffect(() => {
+    console.log("reordered");
+  }, [addOns]);
 
   return (
     <div className="admin-addons-table">

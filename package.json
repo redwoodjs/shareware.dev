@@ -1,7 +1,7 @@
 {
   "name": "addons",
   "version": "1.0.0",
-  "description": "Build fast, server-driven webapps on Cloudflare with SSR, RSC, and realtime. ",
+  "description": "Build fast, server-driven web apps on Cloudflare with SSR, RSC, and realtime. ",
   "main": "index.js",
   "type": "module",
   "keywords": [],
@@ -30,18 +30,22 @@
   "dependencies": {
     "@prisma/adapter-d1": "~6.8.2",
     "@prisma/client": "~6.8.2",
-    "@simplewebauthn/browser": "^13.1.0",
-    "@simplewebauthn/server": "^13.1.1",
+    "@shikijs/transformers": "^3.7.0",
     "@tailwindcss/vite": "^4.1.7",
     "bcryptjs": "^3.0.2",
     "captain-react-hooks": "^1.0.0",
+    "marked": "^16.0.0",
+    "marked-shiki": "^1.2.0",
     "motion": "^12.15.0",
     "resend": "^4.5.1",
-    "rwsdk": "0.0.85",
+    "rwsdk": "0.1.6",
+    "shiki": "^3.7.0",
     "sonner": "^2.0.3",
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "1.7.4",
+    "@cloudflare/workers-types": "^4.20250407.0",
     "@types/node": "^22.14.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
@@ -50,7 +54,7 @@
     "typescript": "^5.8.3",
     "vibe-rules": "^0.2.31",
     "vite": "^6.2.6",
-    "wrangler": "^4.16.0"
+    "wrangler": "^4.20.5"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

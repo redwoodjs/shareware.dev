@@ -14,14 +14,14 @@ const Search = () => {
 
   useEffect(() => {
     // if the user types cmd + k, open the search screen
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const hitCommandK = (event: KeyboardEvent) => {
       if (event.metaKey && event.key === "k") {
         setIsOpen(true);
       }
     };
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", hitCommandK);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keydown", hitCommandK);
     };
   }, [isOpen]);
 
@@ -44,33 +44,11 @@ const Search = () => {
                   {/* form */}
                   <div className="flex items-center gap-4 p-4">
                     <img src="/images/computer-icon.png" alt="Computer Icon" />
-                    <input type="text" placeholder="Search" />
+                    <input type="text" placeholder="Keywords" />
                     <button className="button primary">Search</button>
                   </div>
                   {/* results */}
                   <div className="border-1 border-black py-3 px-4 flex flex-col gap-y-3 max-h-[500px] overflow-y-scroll">
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
-                    <SearchResultsRow />
                     <SearchResultsRow />
                   </div>
                 </>

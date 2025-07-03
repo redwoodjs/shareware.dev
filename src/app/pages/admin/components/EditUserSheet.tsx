@@ -8,6 +8,7 @@ import { useEscapeKey } from "captain-react-hooks";
 import { AnimatePresence, motion } from "motion/react";
 import { toast } from "sonner";
 import { updateUser } from "../actions";
+import { Badge } from "@/app/components/Badge";
 
 const EditUserSheet = ({
   isOpen,
@@ -48,6 +49,9 @@ const EditUserSheet = ({
               <h2 className="subheading mb-6">
                 Edit {user.firstName} {user.lastName}
               </h2>
+              <div className="mb-6">
+                <Badge label={user.verified ? "Verified" : "Unverified"} />
+              </div>
               <form action={handleSubmit}>
                 <div className="field">
                   <label htmlFor="firstName">First Name</label>
@@ -102,7 +106,7 @@ const EditUserSheet = ({
                     </div>
                   </div>
                 )}
-                <div className="field button-group up relative z-[var(--z-index-window-buttons)]">
+                <div className="field button-group up relative z-[var(--z-index-window-buttons)] pt-4">
                   <input type="hidden" name="userId" value={user.id} />
                   <button className="button primary" role="submit">
                     Submit

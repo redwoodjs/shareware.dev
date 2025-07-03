@@ -67,7 +67,11 @@ const DeleteAddOn = ({
                   <button
                     className="button"
                     role="button"
-                    onClick={handleClose}
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleClose();
+                    }}
                   >
                     Cancel
                   </button>

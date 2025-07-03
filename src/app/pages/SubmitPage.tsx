@@ -1,11 +1,15 @@
+import { db } from "@/db";
+import { AddOnForm } from "../components/AddOnForm";
 import { AdminBar } from "../components/AdminBar";
-import { InteriorLayout } from "../layouts/InteriorLayout";
 import { link } from "../shared/links";
 import { RequestInfo } from "rwsdk/worker";
 
-const SubmitPage = ({ ctx }: RequestInfo) => {
+const SubmitPage = async ({ ctx }: RequestInfo) => {
+  // get all the categories
+  const categories = await db.category.findMany();
+
   return (
-    <InteriorLayout>
+    <>
       <div className="half-grid">
         <div className="half-grid--left pr-10 content">
           <h1 className="page-title">Submit Your Add On</h1>
@@ -22,94 +26,43 @@ const SubmitPage = ({ ctx }: RequestInfo) => {
             enjoyable, we want to help you share it.
           </p>
 
-          <h2 className="subheading">How it Works</h2>
-          <ol>
+          <h2 className="subheading !mb-4">How it Works</h2>
+          <ol className="how-it-works">
             <li>
-              Sunt ad dolor occaecat ut occaecat sint aliquip ea ullamco
-              proident culpa exercitation deserunt dolor Lorem. Officia ut
-              laborum esse commodo ut minim labore. Ad dolor elit sint non id
-              exercitation. Velit esse qui officia exercitation.
+              <p>
+                <strong>Fill Out the Form</strong>
+                <br />
+                Tell us about your add-on—what it does, how to install it, and
+                where the code lives (e.g. GitHub link). Before you submit, make
+                sure you’ve read our <a href="#">
+                  Code Style Guidelines
+                </a> and <a href="#">Community Guidelines.</a>
+              </p>
             </li>
             <li>
-              Commodo quis aliquip ea sint cupidatat eiusmod ea ut
-              reprehenderit. Aliqua non laboris ut. Qui anim adipisicing
-              reprehenderit in velit consectetur aute cupidatat nulla sunt.
-              Ipsum ex dolore excepteur mollit tempor ad sunt ipsum ea qui. Do
-              excepteur labore eu irure exercitation. Do dolor ut incididunt et
-              ex tempor aliqua ea officia est commodo proident.
+              <p>
+                <strong>We'll Review It</strong>
+                <br />
+                The RedwoodJS team checks for clarity, installability, and
+                usefulness. We may follow up with questions or suggestions.
+              </p>
             </li>
-
             <li>
-              Complete voting system with user authentication, comment threads,
-              status tracking, and admin dashboard. Users can submit ideas, vote
-              on favorites, and track development progress.
+              <p>
+                <strong>Get Listed</strong>
+                <br />
+                Once approved, your add-on will be published to the
+                Shareware.dev directory for others to discover and use.
+              </p>
             </li>
           </ol>
         </div>
         <div className="half-grid--right pt-[100px]">
-          <form>
-            <div className="field">
-              <label htmlFor="firstName">First Name</label>
-              <input type="text" id="firstName" />
-            </div>
-            <div className="field">
-              <label htmlFor="lastName">Last Name</label>
-              <input type="text" id="lastName" />
-            </div>
-            <div className="field">
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" />
-            </div>
-            <div className="field">
-              <label htmlFor="githubUrl">GitHub Repository URL</label>
-              <input type="url" id="githubUrl" />
-            </div>
-            <div className="field">
-              <label htmlFor="addonName">Add On Package Name</label>
-              <input type="text" id="addonName" />
-            </div>
-            <div className="field">
-              <label htmlFor="demoUrl">URL of Demo</label>
-              <input type="url" id="demoUrl" />
-            </div>
-            <div className="field">
-              <label htmlFor="briefDescription">Brief Description</label>
-              <textarea id="briefDescription" />
-            </div>
-            <div className="field">
-              <label htmlFor="category">Category</label>
-              <select id="category">
-                <option value="authentication">Authentication</option>
-                <option value="database">Database</option>
-                <option value="ui">UI</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div className="field flex items-start gap-2 accept-terms mb-10">
-              <div>
-                <input type="checkbox" id="terms" />
-              </div>
-              <p className="relative leading-normal">
-                I've read and accept RedwoodSDK's{" "}
-                <a href={link("/legal/:slug", { slug: "guidelines" })}>
-                  Add-On Guidelines
-                </a>{" "}
-                and{" "}
-                <a href={link("/legal/:slug", { slug: "guidelines" })}>
-                  Community Guidelines.
-                </a>
-              </p>
-            </div>
-            <div className="button-group justify-start">
-              <button type="submit" className="button primary">
-                Submit
-              </button>
-            </div>
-          </form>
+          <AddOnForm categories={categories} />
         </div>
       </div>
       <AdminBar user={ctx.user} hideAddOnControls={true} />
-    </InteriorLayout>
+    </>
   );
 };
 

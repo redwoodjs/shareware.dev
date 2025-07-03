@@ -12,6 +12,9 @@ const Nav = () => {
             <a href={link("/")}>Home</a>
           </li>
           <li>
+            <a href={link("/docs/:slug", { slug: "introduction" })}>Add Ons</a>
+          </li>
+          <li>
             <a href={constants.DOCS} className="flex items-center gap-[2px]">
               RWSDK Docs
               <Icon
@@ -20,9 +23,6 @@ const Nav = () => {
                 className="relative -top-[1px]"
               />
             </a>
-          </li>
-          <li>
-            <a href={link("/docs/:slug", { slug: "introduction" })}>Add Ons</a>
           </li>
           {/* <li>
             <a href="#">Request an Add On</a>

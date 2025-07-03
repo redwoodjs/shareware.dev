@@ -17,15 +17,9 @@ const AddOnRow = ({ addon }: { addon: AddOn }) => {
       </div>
       <div>
         <h2 className="subheading mb-4">{addon.name}</h2>
-        <p className="font-chicago text-xl mb-4 tracking-tight">
+        <p className="font-chicago text-xl mb-6 tracking-tight">
           {addon.description}
         </p>
-        <div className="mb-4">
-          <CopyCode
-            code={`npx rwsdk-tools install ${addon.owner}/${addon.repo}`}
-          />
-        </div>
-        <p>{addon.description}</p>
         <div className="button-group">
           <a
             href={addon.demo}

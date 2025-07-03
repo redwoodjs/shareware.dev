@@ -24,7 +24,7 @@ const AdminBar = ({
   addOn?: AddOnWithStatusAndCategory | null;
   hideAddOnControls?: boolean;
   defaultExpanded?: boolean;
-  categories: Category[];
+  categories?: Category[];
 }) => {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
   const [isFeatured, setIsFeatured] = useState(addOn?.featured ?? false);
@@ -39,7 +39,7 @@ const AdminBar = ({
     const newIsExpanded = !isExpanded;
     setIsExpanded((prevValue) => !prevValue);
     if (user) {
-      console.log({ userId: user.id, newIsExpanded });
+      // console.log({ userId: user.id, newIsExpanded });
       await toggleAdminBar(user.id, newIsExpanded);
     }
   };

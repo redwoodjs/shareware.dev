@@ -6,6 +6,7 @@ export type IconName =
 	| "check"
 	| "chevronDown"
 	| "clock"
+	| "close"
 	| "desktop"
 	| "dotsHorizontal"
 	| "edit"
@@ -21,5 +22,6 @@ export type IconName =
 	| "star"
 	| "sun"
 	| "trash"
+	| "upload"
 	| "user"
 	| "view";

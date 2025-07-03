@@ -2,10 +2,8 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "addons-site",
   "main": "src/worker.tsx",
-  "compatibility_date": "2024-09-23",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ],
+  "compatibility_date": "2025-05-07",
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "binding": "ASSETS"
   },
@@ -26,9 +24,7 @@
   "migrations": [
     {
       "tag": "v1",
-      "new_sqlite_classes": [
-        "SessionDurableObject"
-      ]
+      "new_sqlite_classes": ["SessionDurableObject"]
     }
   ],
   "d1_databases": [
@@ -36,6 +32,12 @@
       "binding": "DB",
       "database_name": "addons-site-sweet-cattle",
       "database_id": "6ec9506e-ecf6-413f-b5a3-80327c9cf1ad"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "bucket_name": "shareware",
+      "binding": "shareware"
     }
   ]
 }

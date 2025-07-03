@@ -1,10 +1,9 @@
 import { AdminBar } from "../components/AdminBar";
-import { InteriorLayout } from "../layouts/InteriorLayout";
 import { RequestInfo } from "rwsdk/worker";
 
 const DocsPage = ({ ctx }: RequestInfo) => {
   return (
-    <InteriorLayout>
+    <>
       <div className="content-grid">
         <div className="content-grid__main">
           <h1 className="subheading mb-5">Getting Started</h1>
@@ -38,7 +37,7 @@ const DocsPage = ({ ctx }: RequestInfo) => {
         </aside>
       </div>
       <AdminBar user={ctx.user} hideAddOnControls={true} />
-    </InteriorLayout>
+    </>
   );
 };
 

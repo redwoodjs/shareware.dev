@@ -193,7 +193,7 @@
   }
 
   .fieldset {
-    @apply border-2 border-black px-3 pt-4 relative;
+    @apply border-2 border-black px-3 pt-4 mt-8 relative;
     legend {
       @apply uppercase font-chicago bg-white absolute -top-3 left-2 px-2;
     }
@@ -293,7 +293,7 @@
       @apply border-r-1 border-black pt-10;
     }
     .half-grid--right {
-      @apply pt-10 px-8 pb-20 max-w-[600px] w-full;
+      @apply pt-10 px-8 pb-20 max-w-[700px] w-full;
     }
   }
 
@@ -405,12 +405,39 @@
       @apply mb-10;
     }
 
+    h1 {
+      @apply text-[54px] font-serif mb-3 leading-[60px];
+    }
+
     h2 {
       @apply text-[35px] font-serif mb-3 leading-none;
     }
 
+    h3 {
+      @apply font-bold text-[24px] mb-2 leading-[28px];
+    }
+
+    code:not(pre code) {
+      @apply bg-[#DBCFBD] p-1 rounded-[4px] break-all;
+    }
+
     pre {
       @apply w-full bg-black text-white p-4 rounded-corners mb-10;
+    }
+
+    li {
+      @apply mb-3;
+    }
+
+    ul {
+      @apply pl-6 mb-10;
+      li {
+        @apply list-disc;
+      }
+    }
+
+    ol {
+      @apply pl-6 mb-10 list-decimal;
     }
   }
 
@@ -454,5 +481,15 @@
     .subgrid {
       @apply grid grid-cols-subgrid col-span-4;
     }
+  }
+
+  .how-it-works {
+    a {
+      @apply font-bold text-link underline hover:text-link-hover;
+    }
+  }
+
+  .active-nav-link {
+    @apply bg-black text-white p-2;
   }
 }

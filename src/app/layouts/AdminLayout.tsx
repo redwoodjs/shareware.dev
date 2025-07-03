@@ -4,14 +4,10 @@ import { Avatar } from "../components/Avatar";
 import { link } from "../shared/links";
 import { UserWithRole } from "@/worker";
 import { Toaster } from "../components/Toaster";
+import { LayoutProps } from "rwsdk/router";
 
-const AdminLayout = ({
-  children,
-  user,
-}: {
-  children: React.ReactNode;
-  user: UserWithRole;
-}) => {
+const AdminLayout = ({ children, requestInfo }: LayoutProps) => {
+  const user = requestInfo?.ctx?.user as UserWithRole;
   return (
     <div>
       <Toaster />

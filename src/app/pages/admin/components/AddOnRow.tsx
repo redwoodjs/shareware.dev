@@ -65,7 +65,7 @@ const AddOnRow = ({
           {addon.name}
         </a>
       </div>
-      <div>
+      <div className="w-full">
         <Credit
           avatar={{
             src: addon.avatar ?? undefined,

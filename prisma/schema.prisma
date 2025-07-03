@@ -34,6 +34,7 @@ model AddOn {
   repo        String
   order       Int         @default(0)
   featured    Boolean     @default(false)
+  official    Boolean     @default(false)
   description String
   category    Category    @relation(fields: [categoryId], references: [id])
   categoryId  Int

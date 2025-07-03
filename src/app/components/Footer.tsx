@@ -17,22 +17,26 @@ const Footer = ({ condensed = false }: { condensed?: boolean }) => {
           </a>
         </li>
         <li>
-          <a href={constants.GITHUB} target="_blank" rel="noopener noreferrer">
+          <a
+            href={constants.LINKEDIN}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             LINKEDIN
           </a>
         </li>
         <li>
-          <a href={constants.GITHUB} target="_blank" rel="noopener noreferrer">
+          <a href={constants.YOUTUBE} target="_blank" rel="noopener noreferrer">
             YOUTUBE
           </a>
         </li>
         <li>
-          <a href={constants.GITHUB} target="_blank" rel="noopener noreferrer">
+          <a href={constants.BLUESKY} target="_blank" rel="noopener noreferrer">
             BLUESKY
           </a>
         </li>
         <li>
-          <a href={constants.GITHUB} target="_blank" rel="noopener noreferrer">
+          <a href={constants.DISCORD} target="_blank" rel="noopener noreferrer">
             DISCORD
           </a>
         </li>

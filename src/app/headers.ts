@@ -27,6 +27,6 @@ export const setCommonHeaders =
     // Defines trusted sources for content loading and script execution:
     headers.set(
       "Content-Security-Policy",
-      `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; frame-src https://challenges.cloudflare.com https://www.youtube.com https://youtube.com; object-src 'none';`
+      `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://challenges.cloudflare.com https://cdn.usefathom.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://cdn.usefathom.com; connect-src 'self' https://api.cloudflare.com; frame-src https://challenges.cloudflare.com https://www.youtube.com https://youtube.com; object-src 'none';`
     );
   };

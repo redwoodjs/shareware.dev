@@ -7,6 +7,7 @@ import { Faq } from "../components/Faq";
 import { AdminBar } from "../components/AdminBar";
 import { Toaster } from "../components/Toaster";
 import { db } from "@/db";
+import { env } from "cloudflare:workers";
 
 const HomePage = async ({ ctx }: RequestInfo) => {
   // get all the featured add ons
@@ -125,21 +126,8 @@ const HomePage = async ({ ctx }: RequestInfo) => {
             </Faq>
           </div>
         </div>
-        {/* <div>
-          <img
-            src="/images/floppy-discs.png"
-            alt="Floppy Discs"
-            srcSet="/images/floppy-discs.png 1x, /images/floppy-discs@2x.png 2x"
-            className="w-full"
-          />
-        </div> */}
       </section>
 
-      {/* <p>
-        {ctx.user?.username
-          ? `You are logged in as user ${ctx.user.username}`
-          : "You are not logged in"}
-      </p> */}
       <AdminBar hideAddOnControls={true} user={ctx.user} />
       <Footer />
       <Toaster />
