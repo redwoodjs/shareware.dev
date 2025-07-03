@@ -1,10 +1,12 @@
+import { AddOn } from "@generated/prisma";
 import { link } from "../shared/links";
 import { Badge } from "./Badge";
 import { Credit } from "./Credit";
+import { AddOnWithCategory } from "./Nav";
 
-const SearchResultsRow = () => {
+const SearchResultsRow = ({ addOn }: { addOn: AddOnWithCategory }) => {
   return (
-    <div className="grid grid-cols-[1fr_auto_auto] items-center gap-10">
+    <div className="grid grid-cols-[1fr_300px_150px] items-center gap-10">
       <div className="flex items-center gap-3">
         <img
           src="/images/right-triangle.png"
@@ -17,7 +19,7 @@ const SearchResultsRow = () => {
             href={link("/addon/:slug", { slug: "form-to-github-issue" })}
             className="text-link underline hover:text-link-hover bg-none hover:bg-transparent"
           >
-            Form to GitHub Issue
+            {addOn.name}
           </a>
         </div>
       </div>
@@ -25,16 +27,15 @@ const SearchResultsRow = () => {
       <div>
         <Credit
           avatar={{
-            src: "/images/placeholder-avatar.png",
-            alt: "Amy Dutton",
+            alt: `${addOn.owner}`,
           }}
-          owner="ahaywood"
-          repo="redwood-auth-github"
+          owner={addOn.owner}
+          repo={addOn.repo}
         />
       </div>
 
-      <div className="text-sm">
-        <Badge label="Productivity" />
+      <div className="text-sm text-right">
+        <Badge label={addOn.category.name} />
       </div>
     </div>
   );

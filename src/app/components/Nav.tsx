@@ -2,8 +2,28 @@ import { constants } from "../lib/constants";
 import { link } from "../shared/links";
 import { Icon } from "./Icon";
 import { Search } from "./Search";
+import { db } from "@/db";
+import { Prisma } from "@generated/prisma";
 
-const Nav = () => {
+export type AddOnWithCategory = Prisma.AddOnGetPayload<{
+  include: {
+    category: true;
+  };
+}>;
+
+const Nav = async () => {
+  // get all the add-ons that are approved
+  // NOTE: Once we have more add-ons, I'll need to change this
+  const addOns = await db.addOn.findMany({
+    where: {
+      status: {
+        name: "approved",
+      },
+    },
+    include: {
+      category: true,
+    },
+  });
   return (
     <div className="flex items-center gap-8 font-chicago">
       <nav className="main-nav">
@@ -31,7 +51,7 @@ const Nav = () => {
               <ThemeSwitcher />
             </li> */}
           <li>
-            <Search />
+            <Search addOns={addOns} />
           </li>
         </ul>
       </nav>

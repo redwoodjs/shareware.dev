@@ -6,8 +6,10 @@ import { useEscapeKey } from "captain-react-hooks";
 import { Overlay } from "./Overlay";
 import { Window } from "./Window";
 import { SearchResultsRow } from "./SearchResultsRow";
+import { AddOn } from "@generated/prisma";
+import { AddOnWithCategory } from "./Nav";
 
-const Search = () => {
+const Search = ({ addOns }: { addOns: AddOnWithCategory[] }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEscapeKey(() => setIsOpen(false));
@@ -49,7 +51,9 @@ const Search = () => {
                   </div>
                   {/* results */}
                   <div className="border-1 border-black py-3 px-4 flex flex-col gap-y-3 max-h-[500px] overflow-y-scroll">
-                    <SearchResultsRow />
+                    {addOns.map((addOn) => (
+                      <SearchResultsRow key={addOn.id} addOn={addOn} />
+                    ))}
                   </div>
                 </>
               </Window>
