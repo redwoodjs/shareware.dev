@@ -1,4 +1,3 @@
-import { AddOn } from "@generated/prisma";
 import { link } from "../shared/links";
 import { Badge } from "./Badge";
 import { Credit } from "./Credit";
@@ -26,7 +25,7 @@ const SearchResultsRow = ({
         <img src="/images/folder.png" alt="Folder" />
         <div className="font-sans text-base font-bold">
           <a
-            href={link("/addon/:slug", { slug: "form-to-github-issue" })}
+            href={link("/addon/:slug", { slug: addOn.id })}
             className="text-link underline hover:text-link-hover bg-none hover:bg-transparent"
           >
             {addOn.name}

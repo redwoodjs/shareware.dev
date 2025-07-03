@@ -33,6 +33,7 @@
   --color-warning: var(--color-casablanca);
   --color-link: var(--color-bluebonnet);
   --color-link-hover: var(--color-vivid-red);
+  --color-link-visited: var(--color-violet-700);
   --color-background: var(--color-alabaster);
 
   --color-bluebonnet: #121aff;
