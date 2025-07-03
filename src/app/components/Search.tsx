@@ -11,6 +11,7 @@ import { AddOnWithCategory } from "./Nav";
 
 const Search = ({ addOns }: { addOns: AddOnWithCategory[] }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   useEscapeKey(() => setIsOpen(false));
 
@@ -26,6 +27,31 @@ const Search = ({ addOns }: { addOns: AddOnWithCategory[] }) => {
       window.removeEventListener("keydown", hitCommandK);
     };
   }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setSelectedIndex(-1);
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isOpen) return;
+
+      switch (event.key) {
+        case "ArrowDown":
+          event.preventDefault();
+          setSelectedIndex((prev) => (prev < addOns.length - 1 ? prev + 1 : 0));
+          break;
+        case "ArrowUp":
+          event.preventDefault();
+          setSelectedIndex((prev) => (prev > 0 ? prev - 1 : addOns.length - 1));
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, addOns.length]);
 
   return (
     <div>
@@ -50,9 +76,13 @@ const Search = ({ addOns }: { addOns: AddOnWithCategory[] }) => {
                     <button className="button primary">Search</button>
                   </div>
                   {/* results */}
-                  <div className="border-1 border-black py-3 px-4 flex flex-col gap-y-3 max-h-[500px] overflow-y-scroll">
-                    {addOns.map((addOn) => (
-                      <SearchResultsRow key={addOn.id} addOn={addOn} />
+                  <div className="border-1 border-black py-3 px-4 flex flex-col gap-y-1 max-h-[500px] overflow-y-scroll">
+                    {addOns.map((addOn, index) => (
+                      <SearchResultsRow
+                        key={addOn.id}
+                        addOn={addOn}
+                        isSelected={index === selectedIndex}
+                      />
                     ))}
                   </div>
                 </>

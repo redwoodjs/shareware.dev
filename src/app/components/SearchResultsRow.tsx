@@ -4,9 +4,19 @@ import { Badge } from "./Badge";
 import { Credit } from "./Credit";
 import { AddOnWithCategory } from "./Nav";
 
-const SearchResultsRow = ({ addOn }: { addOn: AddOnWithCategory }) => {
+const SearchResultsRow = ({
+  addOn,
+  isSelected,
+}: {
+  addOn: AddOnWithCategory;
+  isSelected: boolean;
+}) => {
   return (
-    <div className="grid grid-cols-[1fr_300px_150px] items-center gap-10">
+    <div
+      className={`grid grid-cols-[1fr_300px_150px] items-center gap-10 border-3 p-2 ${
+        isSelected ? "border-link" : "border-transparent"
+      }`}
+    >
       <div className="flex items-center gap-3">
         <img
           src="/images/right-triangle.png"
