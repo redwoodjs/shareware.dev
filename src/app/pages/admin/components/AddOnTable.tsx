@@ -5,6 +5,8 @@ import { AddOnRow } from "./AddOnRow";
 import { Reorder } from "motion/react";
 import { AddOnWithCategoryAndStatus } from "../DashboardPage";
 import { Category } from "@generated/prisma";
+import { updateAddOnOrder } from "../actions";
+import { toast } from "sonner";
 
 const AddOnTable = ({
   addOns,
@@ -15,9 +17,24 @@ const AddOnTable = ({
 }) => {
   const [addons, setAddons] = useState(addOns);
 
-  useEffect(() => {
-    console.log("reordered");
-  }, [addOns]);
+  const handleReorder = async (newOrder: AddOnWithCategoryAndStatus[]) => {
+    setAddons(newOrder);
+
+    // Extract just the IDs in the new order
+    const addOnIds = newOrder.map((addon) => addon.id);
+    console.log({ addOnIds });
+
+    try {
+      const result = await updateAddOnOrder(addOnIds);
+      if (result.error) {
+        toast.error(result.error);
+      } else {
+        toast.success("Order updated successfully");
+      }
+    } catch (error) {
+      toast.error("Failed to update order");
+    }
+  };
 
   return (
     <div className="admin-addons-table">
@@ -32,7 +49,7 @@ const AddOnTable = ({
       <Reorder.Group
         axis="y"
         values={addons}
-        onReorder={setAddons}
+        onReorder={handleReorder}
         className="subgrid gap-y-3"
       >
         {addons.map((addon) => (

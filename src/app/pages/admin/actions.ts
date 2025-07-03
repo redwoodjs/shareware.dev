@@ -242,3 +242,22 @@ export const updateAddOnFeatured = async (
     return { error: "Failed to update add on featured" };
   }
 };
+
+export const updateAddOnOrder = async (addOnIds: string[]) => {
+  try {
+    // Update all addons with their new order
+    await Promise.all(
+      addOnIds.map((addOnId, index) =>
+        db.addOn.update({
+          where: { id: addOnId },
+          data: { order: index },
+        })
+      )
+    );
+
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { error: "Failed to update add on order" };
+  }
+};

@@ -18,6 +18,9 @@ const HomePage = async ({ ctx }: RequestInfo) => {
         name: "approved",
       },
     },
+    orderBy: {
+      order: "asc",
+    },
   });
 
   return (

@@ -28,6 +28,9 @@ const DashboardPage = async ({ ctx, request }: RequestInfo) => {
       category: true,
       status: true,
     },
+    orderBy: {
+      order: "asc",
+    },
     where: status
       ? {
           status: {
