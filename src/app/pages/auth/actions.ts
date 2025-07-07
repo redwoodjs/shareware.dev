@@ -1,10 +1,11 @@
 "use server";
 
 import { db } from "@/db";
-import bcrypt from "bcryptjs";
 import { sessions } from "@/session/store";
+import bcrypt from "bcryptjs";
+import { getHashedPassword } from "@/app/lib/authHelpers";
 import { requestInfo } from "rwsdk/worker";
-import { Resend } from "resend";
+// import { Resend } from "resend";
 import { env } from "cloudflare:workers";
 import { constants } from "@/app/lib/constants";
 
@@ -85,8 +86,9 @@ export const handleRegister = async (formData: FormData) => {
   }
 
   // generate a salt for the password
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password as string, salt);
+  // const salt = await bcrypt.genSalt(10);
+  // const hashedPassword = await bcrypt.hash(password as string, salt);
+  const hashedPassword = await getHashedPassword(password);
 
   // create a verification token
   const token = crypto.randomUUID().replace(/-/g, "");
@@ -110,23 +112,23 @@ export const handleRegister = async (formData: FormData) => {
 
   console.log("User created successfully");
 
-  const resend = new Resend(env.RESEND_API);
-  const { data, error } = await resend.emails.send({
-    from: "Acme <onboarding@resend.dev>",
-    to: "me@amyhaywood.com",
-    subject: "Welcome to our app",
-    text: `Welcome to our app. Please verify your account by clicking the
-      link below: ${constants.BASE_URL}/verify?token=${token}`,
-  });
+  // const resend = new Resend(env.RESEND_API);
+  // const { data, error } = await resend.emails.send({
+  //   from: "Acme <onboarding@resend.dev>",
+  //   to: "me@amyhaywood.com",
+  //   subject: "Welcome to our app",
+  //   text: `Welcome to our app. Please verify your account by clicking the
+  //     link below: ${constants.BASE_URL}/verify?token=${token}`,
+  // });
 
-  if (error) {
-    console.log("📥 Error sending email", error);
-    return {
-      error: "Error sending email",
-    };
-  }
+  // if (error) {
+  //   console.log("📥 Error sending email", error);
+  //   return {
+  //     error: "Error sending email",
+  //   };
+  // }
 
-  console.log("📥 Email sent successfully", data);
+  // console.log("📥 Email sent successfully", data);
 
   return {
     success: "User created successfully",
@@ -181,18 +183,18 @@ export const handleForgotPassword = async (formData: FormData) => {
   });
 
   // send the reset token to the user's email
-  const resend = new Resend(env.RESEND_API);
-  const { data, error } = await resend.emails.send({
-    from: "Acme <onboarding@resend.dev>",
-    to: email as string,
-    subject: "Reset Your Password",
-    text: `Reset your password by clicking the link below: ${constants.BASE_URL}/reset?token=${token}`,
-  });
+  // const resend = new Resend(env.RESEND_API);
+  // const { data, error } = await resend.emails.send({
+  //   from: "Acme <onboarding@resend.dev>",
+  //   to: email as string,
+  //   subject: "Reset Your Password",
+  //   text: `Reset your password by clicking the link below: ${constants.BASE_URL}/reset?token=${token}`,
+  // });
 
-  if (error) {
-    console.log("📥 Error sending email", error);
-    return { success: null, error: "Error sending email" };
-  }
+  // if (error) {
+  //   console.log("📥 Error sending email", error);
+  //   return { success: null, error: "Error sending email" };
+  // }
 
   return { success: true, error: null };
 };

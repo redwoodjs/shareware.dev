@@ -1,6 +1,13 @@
 "use server";
 
+import { getHashedPassword } from "@/app/lib/authHelpers";
+import {
+  validateEmail,
+  validateGitHubRepo,
+  validateRequiredFields,
+} from "@/app/lib/formHelpers";
 import { db } from "@/db";
+import { User } from "@generated/prisma";
 
 export const addUser = async (formData: FormData) => {
   try {
@@ -42,6 +49,66 @@ export const deleteUser = async (userId: string) => {
   }
 };
 
+export const updateAccount = async (formData: FormData) => {
+  try {
+    const userId = formData.get("userId") as string;
+    const firstName = formData.get("firstName") as string;
+    const lastName = formData.get("lastName") as string;
+    const email = formData.get("email") as string;
+    const newPassword = formData.get("newPassword") as string;
+    const confirmPassword = formData.get("confirmPassword") as string;
+    const notifyNewAddOns = formData.has("notifyNewAddOns");
+
+    // validate the form
+    // required fields
+    if (!validateRequiredFields([firstName, lastName, email])) {
+      return { error: "All fields are required", success: false };
+    }
+    // valid email
+    if (!validateEmail(email)) {
+      return { error: "Invalid email address", success: false };
+    }
+
+    // TODO: Update the Avatar
+
+    let data: Partial<User> = {
+      firstName,
+      lastName,
+      email,
+      notifyNewAddOns,
+    };
+
+    // validate the password
+    if (newPassword !== confirmPassword) {
+      return { error: "Passwords do not match", success: false };
+    }
+    // hash the password
+    else if (newPassword !== "") {
+      data.password = await getHashedPassword(newPassword);
+    }
+
+    await db.user.update({
+      where: { id: userId },
+      data,
+    });
+    return { success: true, error: null };
+  } catch (error) {
+    console.error(error);
+
+    // Check for unique constraint violation on email
+    if (
+      error instanceof Error &&
+      error.message.includes(
+        "Unique constraint failed on the fields: (`email`)"
+      )
+    ) {
+      return { error: "Email address is already taken" };
+    }
+
+    return { error: "Failed to update user", success: false };
+  }
+};
+
 export const updateUser = async (formData: FormData) => {
   try {
     const userId = formData.get("userId") as string;
@@ -49,6 +116,14 @@ export const updateUser = async (formData: FormData) => {
     const lastName = formData.get("lastName") as string;
     const email = formData.get("email") as string;
     const role = formData.get("role") as string;
+
+    if (!validateRequiredFields([firstName, lastName, email])) {
+      return { error: "All fields are required" };
+    }
+
+    if (validateEmail(email)) {
+      return { error: "Invalid email address" };
+    }
 
     await db.user.update({
       where: { id: userId },
@@ -63,35 +138,19 @@ export const updateUser = async (formData: FormData) => {
     return { success: true };
   } catch (error) {
     console.error(error);
+
+    // Check for unique constraint violation on email
+    if (
+      error instanceof Error &&
+      error.message.includes(
+        "Unique constraint failed on the fields: (`email`)"
+      )
+    ) {
+      return { error: "Email address is already taken" };
+    }
+
     return { error: "Failed to update user" };
   }
-};
-
-export const validateGitHubRepo = (githubRepo: string) => {
-  if (!githubRepo) {
-    return { error: "Invalid github repo" };
-  }
-
-  /**
-   * Validate the repo - Ensure the URL includes github.com
-   */
-  if (!githubRepo.includes("github.com")) {
-    return { error: "Invalid github repo" };
-  }
-
-  /**
-   * When the githubRepo URL comes in, it will look something like this:
-   * https://github.com/redwoodjs/sdk
-   * I need to get the owner and the repo from this URL.
-   */
-  const [owner, repo] = githubRepo.split("/").slice(-2);
-
-  // check to make sure the owner and repo are valid and one of the values is NOT github and the other is not empty
-  if (owner === "github" || repo === "github" || !owner || !repo) {
-    return { error: "Invalid github repo" };
-  }
-
-  return { owner, repo };
 };
 
 export const addAddOn = async (formData: FormData) => {
@@ -107,11 +166,11 @@ export const addAddOn = async (formData: FormData) => {
     const category = formData.get("category") as string;
     const featured = formData.has("featured");
 
-    const { owner, repo, error } = validateGitHubRepo(githubRepo);
-
-    if (error) {
-      return { error };
+    if (!validateGitHubRepo(githubRepo)) {
+      return { error: "Invalid github repo" };
     }
+
+    const { owner, repo } = getOwnerAndRepo(githubRepo);
 
     await db.addOn.create({
       data: {
@@ -179,11 +238,11 @@ export const updateAddOn = async (formData: FormData) => {
       featured,
     });
 
-    const { owner, repo, error } = validateGitHubRepo(githubRepo);
-
-    if (error) {
-      return { error };
+    if (!validateGitHubRepo(githubRepo)) {
+      return { error: "Invalid github repo" };
     }
+
+    const { owner, repo } = getOwnerAndRepo(githubRepo);
 
     await db.addOn.update({
       where: { id: addOnId },
@@ -261,3 +320,6 @@ export const updateAddOnOrder = async (addOnIds: string[]) => {
     return { error: "Failed to update add on order" };
   }
 };
+function getOwnerAndRepo(githubRepo: string): { owner: any; repo: any } {
+  throw new Error("Function not implemented.");
+}

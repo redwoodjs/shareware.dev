@@ -154,6 +154,20 @@
     }
   }
 
+  button.no-bg {
+    @apply font-chicago cursor-pointer whitespace-nowrap flex items-center gap-2 px-5 py-2 underline hover:no-underline;
+    &.destructive {
+      @apply text-destructive;
+    }
+  }
+
+  .form-grid {
+    @apply grid grid-cols-2 gap-x-10;
+    .full {
+      @apply col-span-2;
+    }
+  }
+
   label {
     @apply block uppercase mb-2 font-chicago;
   }

@@ -22,14 +22,21 @@ const UserRow = ({ user, roles }: { user: UserWithRole; roles: Role[] }) => {
 
   return (
     <div className="bg-white relative py-3 px-6 subgrid items-center">
-      <div className="font-bold text-lg flex items-center gap-2">
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          setIsEditUserSheetOpen(true);
+        }}
+        role="button"
+        className="font-bold text-lg flex items-center gap-2 cursor-pointer hover:text-link-hover hover:underline"
+      >
         <Avatar
           src={user.avatar || ""}
           alt={`${user.firstName} ${user.lastName}`}
           size={32}
         />
         {user.firstName} {user.lastName}
-      </div>
+      </button>
       <div>{user.email}</div>
       <div>
         <Badge label={user.role.name} className="capitalize" />

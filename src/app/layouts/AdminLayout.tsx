@@ -32,7 +32,7 @@ const AdminLayout = ({ children, requestInfo }: LayoutProps) => {
               <div className="font-chicago">
                 <a
                   href={link("/admin/settings")}
-                  className="hover:text-link hover:underline"
+                  className="hover:text-link-hover hover:underline"
                 >
                   {user.firstName} {user.lastName}
                 </a>

@@ -2,7 +2,7 @@
 
 import { Overlay } from "@/app/components/Overlay";
 import { Window } from "@/app/components/Window";
-import { UserWithRole } from "@/worker";
+import { User } from "@generated/prisma";
 import { useEscapeKey, useOutsideClick } from "captain-react-hooks";
 import { AnimatePresence } from "motion/react";
 import { useRef } from "react";
@@ -16,7 +16,7 @@ const DeleteUser = ({
 }: {
   isOpen: boolean;
   handleClose: () => void;
-  user: UserWithRole;
+  user: User;
 }) => {
   const windowRef = useRef<HTMLDivElement>(null);
   useOutsideClick(handleClose, windowRef);
@@ -54,7 +54,8 @@ const DeleteUser = ({
                   </div>
                   <div className="flex-1">
                     <p className="font-chicago mb-3 text-destructive">
-                      Are you sure you want to delete this User?
+                      Are you sure you want to delete{" "}
+                      {`${user.firstName} ${user.lastName}`}?
                     </p>
                     <p className="font-sans">This action cannot be undone.</p>
                   </div>
@@ -63,7 +64,14 @@ const DeleteUser = ({
                   action={handleSubmit}
                   className="button-group up justify-end"
                 >
-                  <button className="button" onClick={handleClose}>
+                  <button
+                    role="button"
+                    className="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleClose();
+                    }}
+                  >
                     Cancel
                   </button>
                   <button className="button primary" role="submit">

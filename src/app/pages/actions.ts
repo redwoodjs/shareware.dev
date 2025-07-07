@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/db";
-import { validateGitHubRepo } from "./admin/actions";
+import { validateGitHubRepo } from "@/app/lib/formHelpers";
 
 export const toggleAdminBar = async (
   userId: string,
@@ -50,11 +50,11 @@ export const submitAddOn = async (formData: FormData) => {
     const coverImage = formData.get("coverImage") as File;
     const category = formData.get("category") as string;
 
-    const { owner, repo, error } = validateGitHubRepo(githubRepo);
-
-    if (error) {
-      return { error };
+    if (!validateGitHubRepo(githubRepo)) {
+      return { error: "Invalid github repo" };
     }
+
+    const { owner, repo } = getOwnerAndRepo(githubRepo);
 
     // validate form
     if (
@@ -97,3 +97,6 @@ export const submitAddOn = async (formData: FormData) => {
     return { error: "Failed to submit add-on" };
   }
 };
+function getOwnerAndRepo(githubRepo: string): { owner: any; repo: any } {
+  throw new Error("Function not implemented.");
+}
