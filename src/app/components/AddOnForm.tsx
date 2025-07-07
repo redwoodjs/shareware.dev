@@ -71,12 +71,12 @@ const AddOnForm = ({ categories }: { categories: Category[] }) => {
           <input type="checkbox" id="terms" name="terms" />
         </div>
         <p className="relative leading-normal">
-          I've read and accept RedwoodSDK's{" "}
-          <a href={link("/legal/:slug", { slug: "guidelines" })}>
-            Add-On Guidelines
+          I've read and accept RedwoodSDK's Add-On{" "}
+          <a href={link("/legal/:slug", { slug: "code" })}>
+            Code Style Guidelines
           </a>{" "}
           and{" "}
-          <a href={link("/legal/:slug", { slug: "guidelines" })}>
+          <a href={link("/legal/:slug", { slug: "community" })}>
             Community Guidelines.
           </a>
         </p>

@@ -40,9 +40,14 @@ const SubmitPage = async ({ ctx }: RequestInfo) => {
                 <br />
                 Tell us about your add-on—what it does, how to install it, and
                 where the code lives (e.g. GitHub link). Before you submit, make
-                sure you’ve read our <a href="#">
+                sure you’ve read our{" "}
+                <a href={link("/legal/:slug", { slug: "code" })}>
                   Code Style Guidelines
-                </a> and <a href="#">Community Guidelines.</a>
+                </a>{" "}
+                and{" "}
+                <a href={link("/legal/:slug", { slug: "community" })}>
+                  Community Guidelines.
+                </a>
               </p>
             </li>
             <li>

@@ -9,6 +9,9 @@ import { AnimatePresence, motion } from "motion/react";
 import { toast } from "sonner";
 import { updateUser } from "../actions";
 import { Badge } from "@/app/components/Badge";
+import { Icon } from "@/app/components/Icon";
+import { useState } from "react";
+import { DeleteUser } from "./DeleteUser";
 
 const EditUserSheet = ({
   isOpen,
@@ -22,6 +25,7 @@ const EditUserSheet = ({
   roles: Role[];
 }) => {
   useEscapeKey(handleClose);
+  const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
 
   const handleSubmit = async (formData: FormData) => {
     const result = await updateUser(formData);
@@ -121,10 +125,26 @@ const EditUserSheet = ({
                   >
                     Cancel
                   </button>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsConfirmDeleteOpen(true);
+                    }}
+                    className="no-bg destructive"
+                    role="button"
+                  >
+                    <Icon id="trash" />
+                    Delete User
+                  </button>
                 </div>
               </form>
             </Sheet>
           </motion.div>
+          <DeleteUser
+            isOpen={isConfirmDeleteOpen}
+            handleClose={() => setIsConfirmDeleteOpen(false)}
+            user={user}
+          />
         </>
       )}
     </AnimatePresence>
