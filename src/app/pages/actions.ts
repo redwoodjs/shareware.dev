@@ -98,6 +98,9 @@ export const submitAddOn = async (formData: FormData) => {
       },
     });
 
+    // TODO: Create an issue on GitHub
+    // TODO: Email all admins that want to be notified
+
     return { success: true };
   } catch (error) {
     return { error: "Failed to submit add-on" };
