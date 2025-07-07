@@ -32,7 +32,7 @@ export const handleLogin = async (formData: FormData) => {
   if (!user) {
     console.log("User does not exist");
     return {
-      error: "Invalid username or password",
+      error: "Invalid email or password",
     };
   }
 
@@ -43,6 +43,13 @@ export const handleLogin = async (formData: FormData) => {
     console.log("Invalid password");
     return {
       error: "Invalid email or password",
+    };
+  }
+
+  // has the user been verified?
+  if (!user.verified) {
+    return {
+      error: "User not verified",
     };
   }
 
