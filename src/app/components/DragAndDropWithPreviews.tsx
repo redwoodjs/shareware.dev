@@ -82,14 +82,14 @@ const DragAndDropWithPreviews = ({
           <strong>Choose File</strong> or <strong>Drag and Drop</strong>
         </div>
         {files.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-2">
+          <div className="flex flex-wrap gap-5 justify-between mt-2">
             {files.map((file, index) => (
               <div key={file.name} style={{ position: "relative" }}>
                 {previews[index] && (
                   <img
                     src={previews[index]}
                     alt={file.name}
-                    className="max-w-[200px] max-h-[200px] object-cover"
+                    className="max-w-[185px] max-h-[185px] object-cover"
                   />
                 )}
                 <button
@@ -101,7 +101,7 @@ const DragAndDropWithPreviews = ({
                     setFiles(files.filter((_, i) => i !== index));
                     setPreviews(previews.filter((_, i) => i !== index));
                   }}
-                  className="absolute top-2 right-2 bg-red-500 text-white border-none rounded-full size-5 cursor-pointer"
+                  className="absolute -top-2 -right-2 bg-red-500 text-white border-none rounded-full cursor-pointer"
                 >
                   <Icon id="close" />
                 </button>

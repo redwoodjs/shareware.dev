@@ -4,7 +4,6 @@ import { Category } from "@generated/prisma";
 import { link } from "../shared/links";
 import { submitAddOn } from "../pages/actions";
 import { toast } from "sonner";
-import { Icon } from "./Icon";
 import { DragAndDropWithPreviews } from "./DragAndDropWithPreviews";
 
 const AddOnForm = ({ categories }: { categories: Category[] }) => {
@@ -51,7 +50,7 @@ const AddOnForm = ({ categories }: { categories: Category[] }) => {
         <DragAndDropWithPreviews
           name="coverImage"
           accept="image/*"
-          multiple={false}
+          multiple={true}
         />
         <p className="text-xs">Recommended size: 1024x512</p>
       </div>
