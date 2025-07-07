@@ -1,38 +1,23 @@
+- [ ] Contributors will need an account **v2**
+- [ ] Think through Stripe / link / payouts
+
+---
+
 - [ ] Add badge to sidebar
   - [ ] Add a flag for new in the admin panel
-- [ ] Display roles on the user list
 - [ ] Add SEO Page Titles
 - [ ] When a new add on is created, it should:
   - [ ] Create a GitHub issue
   - [ ] Email any users that have requested updates
 - [ ] Provide better messaging when the user is not verified
-- [ ] Admin bar should not appear for a standard user, only admins
 - [ ] Update this README
-- [ ] Think through Stripe / link / payouts
-- [ ] Contributors will need an account
 - [ ] Mobile Layout
 - [ ] Send a welcome email when a user registers
 - [ ] Style Email
-- [ ] Write Content for documentation
-- [ ] For the Add On Details - pull from README
 - [ ] Update Forgot Password Flow
 - [ ] Update Reset password flow
 - [ ] Replace the FAQs on the home page with real content
-  - [ ] Spike on MJ's Markdown Add On
-- [ ] Connect the newsletter form to Kwes Forms
 - [ ] Add text for all the legal pages
   - [ ] Terms
   - [ ] Conditions
   - [ ] Privacy
-- [ ] Update text "How it Works" for submitting an addon
-- [ ] Hotwire the form for submitting an add on
-- [ ] Build Admin / Settings Page
-- [ ] Migrate to layouts
-- [ ] Write docs for add ons
-  - [ ] Introduction
-  - [ ] Installation
-  - [ ] Remove addons.jsonc
-  - [ ] Changelog
-- [ ] Redwood Sign up Page - currently showing an error
-- [ ] Connect the search feature
-- [ ] Dynamically pull in the README for each add on
