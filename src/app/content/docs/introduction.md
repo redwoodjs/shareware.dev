@@ -1,5 +1,6 @@
 ---
 title: Introduction
+slug: introduction
 ---
 
 Shareware.dev is the official directory for add-ons and plug-ins built for the RedwoodSDK. Whether you’re looking to extend your project with powerful new features or share tools you’ve built with the community, this is the place to start.

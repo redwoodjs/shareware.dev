@@ -21,7 +21,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@generated/*": ["./generated/*"]
+      "@generated/*": ["./generated/*"],
+      "content-collections": ["./.content-collections/generated"]
     },
     /* Enable importing .json files */
     "resolveJsonModule": true,

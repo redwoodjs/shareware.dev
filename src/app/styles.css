@@ -97,6 +97,12 @@
     @apply bg-white border-2 border-black;
   }
 
+  /* smooth scroll */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px;
+  }
+
   body {
     @apply font-sans p-0 m-0 bg-background dark:bg-black w-screen overflow-x-hidden overflow-y-auto;
   }
@@ -296,8 +302,8 @@
   }
 
   .content-grid {
-    @apply grid grid-cols-[minmax(0,1fr)_200px] pt-10 gap-x-20 pb-20;
-    &__main {
+    @apply grid grid-cols-[minmax(0,1fr)_200px] pt-10 gap-x-20 pb-20 w-full;
+    .content-grid__main {
       @apply pb-20 max-w-[660px] mx-auto relative;
     }
   }
@@ -415,6 +421,10 @@
   }
 
   .addon-content {
+    hr {
+      @apply my-12;
+    }
+
     img,
     iframe {
       @apply mb-10;
@@ -453,6 +463,10 @@
 
     ol {
       @apply pl-6 mb-10 list-decimal;
+    }
+
+    a {
+      @apply font-bold underline text-link hover:text-link-hover;
     }
   }
 
