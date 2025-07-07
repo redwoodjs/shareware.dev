@@ -226,19 +226,6 @@ export const updateAddOn = async (formData: FormData) => {
     const category = formData.get("category") as string;
     const featured = formData.has("featured");
 
-    console.log({
-      firstName,
-      lastName,
-      email,
-      githubRepo,
-      addonName,
-      demoUrl,
-      briefDescription,
-      status,
-      category,
-      featured,
-    });
-
     if (!validateGitHubRepo(githubRepo)) {
       return { error: "Invalid github repo" };
     }
