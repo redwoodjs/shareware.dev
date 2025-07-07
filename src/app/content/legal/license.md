@@ -1,6 +1,7 @@
 ---
 title: License
 slug: /license
+description: MIT License for the RedwoodJS add-ons platform. Copyright 2025 RedwoodJS Inc. Full license terms covering usage, modification, distribution, and liability limitations.
 ---
 
 # MIT License

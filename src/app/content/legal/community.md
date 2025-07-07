@@ -1,6 +1,7 @@
 ---
 title: Community Guidelines
 slug: /community
+description: We’re building a space where developers can collaborate, share tools, and grow the ecosystem together. To keep this community helpful, respectful, and productive, please follow our guidelines.
 ---
 
 # Community Guidelines

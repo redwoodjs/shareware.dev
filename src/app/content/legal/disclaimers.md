@@ -1,6 +1,7 @@
 ---
 title: Disclaimers
 slug: /disclaimers
+description: Legal disclaimers and terms of use for the RedwoodJS add-ons platform. Covers warranty limitations, third-party contributions, liability, intellectual property, security, and content moderation policies.
 ---
 
 ## 1. No Warranty

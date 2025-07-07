@@ -1,6 +1,7 @@
 ---
 title: Privacy Policy
 slug: /privacy
+description: Privacy Policy for RedwoodJS add-ons platform. Learn how we collect, use, and protect your personal information, including GDPR rights, cookies, third-party links, and data security measures.
 ---
 
 BY VISITING HTTPS://SHAREWARE.DEV, YOU ARE CONSENTING TO OUR PRIVACY POLICY.

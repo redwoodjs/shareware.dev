@@ -1,6 +1,7 @@
 ---
 title: Introduction
 slug: introduction
+description: "An add-on is a package of functionality that plugs into a RedwoodSDK app. It might include: routes, pages, components, actions, or services."
 ---
 
 Shareware.dev is the official directory for add-ons and plug-ins built for the RedwoodSDK. Whether you’re looking to extend your project with powerful new features or share tools you’ve built with the community, this is the place to start.

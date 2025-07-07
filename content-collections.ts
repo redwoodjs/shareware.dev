@@ -12,6 +12,7 @@ const docs = defineCollection({
   schema: z.object({
     title: z.string(),
     slug: z.string(),
+    description: z.string(),
   }),
   transform: async (document, context) => {
     const html = await compileMarkdown(context, document);

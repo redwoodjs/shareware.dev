@@ -36,6 +36,13 @@ const HomePage = async ({ ctx }: RequestInfo) => {
 
   return (
     <div>
+      {/* META DATA */}
+      <title>RedwoodSDK Add Ons</title>
+      <meta
+        name="description"
+        content="RedwoodSDK Add Ons are pre-built, production-ready components and applications that install with a single command. Focus on what makes your app unique."
+      />
+
       {/* hero */}
       <div className="grid grid-cols-[auto_1fr] gap-x-12 w-screen bg-[#ebe6e5]">
         <div className="flex items-baseline justify-start h-full">

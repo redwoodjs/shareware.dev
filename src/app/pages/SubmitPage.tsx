@@ -10,6 +10,12 @@ const SubmitPage = async ({ ctx }: RequestInfo) => {
 
   return (
     <>
+      <title>RedwoodSDK Add Ons | Submit Your Add On</title>
+      <meta
+        name="description"
+        content="Got a useful RedwoodSDK component or integration? Let's get it in front of other developers."
+      />
+
       <div className="half-grid">
         <div className="half-grid--left pr-10 content">
           <h1 className="page-title">Submit Your Add On</h1>

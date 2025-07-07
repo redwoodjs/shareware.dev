@@ -1,6 +1,7 @@
 ---
 title: Terms and Conditions
 slug: /terms
+description: Terms and Conditions for RedwoodJS add-ons platform. Covers user accounts, intellectual property, content submission, liability limitations, and usage rights for the Shareware.dev community.
 ---
 
 ## 📘 Overview

@@ -16,6 +16,9 @@ const DocsPage = async ({ ctx, params }: RequestInfo) => {
 
   return (
     <>
+      <title>RedwoodSDK Add Ons | {doc?.title}</title>
+      <meta name="description" content={doc?.description ?? ""} />
+
       <div className="content-grid pt-12">
         <div className="content-grid__main">
           <h1 className="page-title mb-5">{doc?.title}</h1>
