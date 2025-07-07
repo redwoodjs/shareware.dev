@@ -64,7 +64,7 @@ const AdminBar = ({
     }
   };
 
-  if (!user) {
+  if (!user || user.roleId > 1) {
     return null;
   }
 
