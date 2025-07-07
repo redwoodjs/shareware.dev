@@ -40,7 +40,7 @@ export const validateGitHubRepo = (githubRepo: string): boolean => {
   return true;
 };
 
-const getOwnerAndRepo = (githubRepo: string) => {
+export const getOwnerAndRepo = (githubRepo: string) => {
   const [owner, repo] = githubRepo.split("/").slice(-2);
 
   // check to make sure the owner and repo are valid and one of the values is NOT github and the other is not empty

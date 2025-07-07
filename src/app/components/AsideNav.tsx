@@ -16,7 +16,6 @@ const AsideNav = async ({ currentPath }: { currentPath: string }) => {
     },
   });
 
-  console.log(allDocs);
   const allDocLinks = allDocs.map((doc) => {
     return {
       slug: doc.slug,
@@ -28,8 +27,8 @@ const AsideNav = async ({ currentPath }: { currentPath: string }) => {
     <aside className="aside-nav">
       <ul className="font-chicago flex flex-col gap-y-3">
         <li className="header">Getting Started</li>
-        {allDocLinks.map((doc) => (
-          <li>
+        {allDocLinks.map((doc, index) => (
+          <li key={index}>
             <a
               href={link("/docs/:slug", { slug: doc.slug })}
               className={`${

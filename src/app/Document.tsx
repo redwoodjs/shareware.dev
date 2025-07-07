@@ -11,6 +11,10 @@ export const Document: React.FC<{ children: React.ReactNode }> = ({
       <title>RWSDK Add Ons</title>
       <link rel="modulepreload" href="/src/client.tsx" />
 
+      {/* prismjs */}
+      <script src="/prism/prism.js" />
+      <link rel="stylesheet" href="/prism/prism.css" />
+
       {/* favicon */}
       <link rel="icon" href="/favicon.png" type="image/png" />
 

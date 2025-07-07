@@ -1,7 +1,11 @@
 "use server";
 
 import { db } from "@/db";
-import { validateGitHubRepo } from "@/app/lib/formHelpers";
+import {
+  validateGitHubRepo,
+  validateRequiredFields,
+  getOwnerAndRepo,
+} from "@/app/lib/formHelpers";
 
 export const toggleAdminBar = async (
   userId: string,
@@ -57,16 +61,18 @@ export const submitAddOn = async (formData: FormData) => {
     const { owner, repo } = getOwnerAndRepo(githubRepo);
 
     // validate form
+    // TODO: Add Cover Image to the list
     if (
-      !firstName ||
-      !lastName ||
-      !email ||
-      !githubRepo ||
-      !addonName ||
-      !demoUrl ||
-      !coverImage ||
-      !briefDescription ||
-      !category
+      validateRequiredFields([
+        firstName,
+        lastName,
+        email,
+        githubRepo,
+        addonName,
+        demoUrl,
+        briefDescription,
+        category,
+      ])
     ) {
       return { error: "All fields are required" };
     }
@@ -97,6 +103,3 @@ export const submitAddOn = async (formData: FormData) => {
     return { error: "Failed to submit add-on" };
   }
 };
-function getOwnerAndRepo(githubRepo: string): { owner: any; repo: any } {
-  throw new Error("Function not implemented.");
-}

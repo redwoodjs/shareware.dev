@@ -1,7 +1,6 @@
 import { AdminBar } from "../components/AdminBar";
 import { RequestInfo } from "rwsdk/worker";
 import { allDocs } from "content-collections";
-import { slugify } from "../lib/urlHelpers";
 import { getHeadings, injectIdsToHeadings } from "../lib/contentHelpers";
 
 const DocsPage = async ({ ctx, params }: RequestInfo) => {

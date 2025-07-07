@@ -40,7 +40,15 @@ async function fetchReadme(owner: string, repo: string) {
     }
 
     const data = (await response.json()) as GitHubReadmeResponse;
-    const content = atob(data.content);
+
+    // Fix UTF-8 encoding for emojis
+    const binaryString = atob(data.content);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    const content = new TextDecoder().decode(bytes);
+
     return marked(content);
   } catch (error) {
     console.error("Error fetching README:", error);

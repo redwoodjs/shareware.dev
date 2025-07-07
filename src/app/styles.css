@@ -447,7 +447,11 @@
     }
 
     pre {
-      @apply w-full bg-black text-white p-4 rounded-corners mb-10;
+      @apply w-full bg-[#2d2d2d] text-[#cccccc] p-4 rounded-corners mb-10 overflow-x-auto;
+    }
+
+    .code-toolbar {
+      @apply mb-12;
     }
 
     li {

@@ -5,6 +5,7 @@ import {
   validateEmail,
   validateGitHubRepo,
   validateRequiredFields,
+  getOwnerAndRepo,
 } from "@/app/lib/formHelpers";
 import { db } from "@/db";
 import { User } from "@generated/prisma";
@@ -320,6 +321,3 @@ export const updateAddOnOrder = async (addOnIds: string[]) => {
     return { error: "Failed to update add on order" };
   }
 };
-function getOwnerAndRepo(githubRepo: string): { owner: any; repo: any } {
-  throw new Error("Function not implemented.");
-}
