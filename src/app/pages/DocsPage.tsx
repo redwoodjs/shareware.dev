@@ -5,7 +5,6 @@ import { getHeadings, injectIdsToHeadings } from "../lib/contentHelpers";
 
 const DocsPage = async ({ ctx, params }: RequestInfo) => {
   // get the individual page content
-  // const page = await allDocs.find((doc) => doc.id === params.slug);
   const doc = allDocs.find((doc) => doc.slug === params.slug);
 
   // Extract headings from HTML content

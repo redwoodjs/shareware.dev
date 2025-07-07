@@ -1,6 +1,6 @@
 ---
 title: Privacy Policy
-slug: /privacy
+slug: privacy
 description: Privacy Policy for RedwoodJS add-ons platform. Learn how we collect, use, and protect your personal information, including GDPR rights, cookies, third-party links, and data security measures.
 ---
 

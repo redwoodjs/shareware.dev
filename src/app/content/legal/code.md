@@ -1,6 +1,6 @@
 ---
 title: Code Style
-slug: /code
+slug: code
 description: To maintain quality and consistency across official RedwoodSDK add-ons, we encourage contributors to follow our code style guidelines. These help ensure your add-on is easy to read, extend, and maintain—whether it’s used by a solo dev or a scaling team.
 ---
 
