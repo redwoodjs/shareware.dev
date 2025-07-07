@@ -16,7 +16,6 @@
 - [ ] Style Email
 - [ ] Update Forgot Password Flow
 - [ ] Update Reset password flow
-- [ ] Replace the FAQs on the home page with real content
 - [ ] Add text for all the legal pages
   - [ ] Terms
   - [ ] Conditions

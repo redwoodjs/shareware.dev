@@ -373,6 +373,9 @@
     &.open:before {
       @apply z-[-1] content-[''] h-full w-4 border-l-2 border-b-2 border-black absolute left-[10px] top-3;
     }
+    pre {
+      @apply mb-10 bg-[#2d2d2d] text-[#cccccc] p-4 rounded-corners overflow-x-auto;
+    }
   }
 
   .aside-nav a {

@@ -7,7 +7,8 @@ import { Faq } from "../components/Faq";
 import { AdminBar } from "../components/AdminBar";
 import { Toaster } from "../components/Toaster";
 import { db } from "@/db";
-import { env } from "cloudflare:workers";
+import { allFaqs } from "content-collections";
+import type { Faq as FaqType } from "content-collections";
 
 const HomePage = async ({ ctx }: RequestInfo) => {
   // get all the featured add ons
@@ -22,6 +23,16 @@ const HomePage = async ({ ctx }: RequestInfo) => {
       order: "asc",
     },
   });
+
+  // split the faqs into two columns
+  const faqs = allFaqs.reduce(
+    (acc: { left: FaqType[]; right: FaqType[] }, faq, index) => {
+      const column = index % 2 === 0 ? "left" : "right";
+      acc[column].push(faq as FaqType);
+      return acc;
+    },
+    { left: [] as FaqType[], right: [] as FaqType[] }
+  );
 
   return (
     <div>
@@ -79,54 +90,20 @@ const HomePage = async ({ ctx }: RequestInfo) => {
             <h2 className="subheading mb-8">Frequently Asked Questions</h2>
           </div>
           {/* left column */}
-          <div>
-            <div className="faq-list">
-              <Faq question="What is a RedwoodSDK Add On?">
-                <p>
-                  RedwoodSDK Add Ons are pre-built, production-ready components,
-                  and applications that install with a single command. Focus on
-                  what makes your app unique.
-                </p>
+          <div className="faq-list">
+            {faqs.left.map((faq, index) => (
+              <Faq question={faq.question} key={`${index}-left`}>
+                <div dangerouslySetInnerHTML={{ __html: faq.html }} />
               </Faq>
-              <Faq question="What is a RedwoodSDK Add On?">
-                <p>
-                  RedwoodSDK Add Ons are pre-built, production-ready components,
-                  and applications that install with a single command. Focus on
-                  what makes your app unique.
-                </p>
-              </Faq>
-              <Faq question="What is a RedwoodSDK Add On?">
-                <p>
-                  RedwoodSDK Add Ons are pre-built, production-ready components,
-                  and applications that install with a single command. Focus on
-                  what makes your app unique.
-                </p>
-              </Faq>
-            </div>
+            ))}
           </div>
           {/* right column */}
           <div className="faq-list">
-            <Faq question="What is a RedwoodSDK Add On?">
-              <p>
-                RedwoodSDK Add Ons are pre-built, production-ready components,
-                and applications that install with a single command. Focus on
-                what makes your app unique.
-              </p>
-            </Faq>
-            <Faq question="What is a RedwoodSDK Add On?">
-              <p>
-                RedwoodSDK Add Ons are pre-built, production-ready components,
-                and applications that install with a single command. Focus on
-                what makes your app unique.
-              </p>
-            </Faq>
-            <Faq question="What is a RedwoodSDK Add On?">
-              <p>
-                RedwoodSDK Add Ons are pre-built, production-ready components,
-                and applications that install with a single command. Focus on
-                what makes your app unique.
-              </p>
-            </Faq>
+            {faqs.right.map((faq, index) => (
+              <Faq question={faq.question} key={`${index}-right`}>
+                <div dangerouslySetInnerHTML={{ __html: faq.html }} />
+              </Faq>
+            ))}
           </div>
         </div>
       </section>
