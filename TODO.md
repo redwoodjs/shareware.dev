@@ -5,7 +5,6 @@
 
 ---
 
-- [ ] Update this README
 - [ ] When a new add on is created, it should:
   - [ ] Create a GitHub issue
   - [ ] Email any users that have requested updates

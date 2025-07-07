@@ -1,62 +1,51 @@
-# Standard RedwoodSDK Starter
+# RedwoodSDK Addons Catalog
 
-This "standard starter" is the recommended implementation for RedwoodSDK. You get a Typescript project with:
+A community-driven catalog and index of all addons built for [RedwoodSDK](https://rwsdk.com). This platform allows developers to discover, submit, and manage addons that extend RedwoodSDK's functionality.
 
-- Vite
-- database (Prisma via D1)
-- Session Management (via DurableObjects)
-- Passkey authentication (Webauthn)
-- Storage (via R2)
+## Features
 
-## Creating your project
+- **Addon Discovery**: Browse and search through community-created addons
+- **Addon Submission**: Submit your own addons for the community
+- **Admin Panel**: Manage addon submissions and user accounts
+- **User Authentication**: Secure login with passkey support
+- **Content Management**: Markdown-based content with syntax highlighting
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- pnpm
+- Cloudflare account (for deployment)
+
+### Installation
 
 ```shell
-npx degit redwoodjs/sdk/starters/standard my-project-name
-cd my-project-name
+git clone https://github.com/ahaywood/addons-site.git
+cd addons-site
 pnpm install
 ```
 
-## Running the dev server
+### Development
 
 ```shell
 pnpm dev
 ```
 
-Point your browser to the URL displayed in the terminal (e.g. `http://localhost:5173/`). You should see a "Hello World" message in your browser.
+The first time you run `pnpm dev` it will create the `.wrangler` directory with a `d1` database and all the necessary migrations and database seeds.
 
-## Deploying your app
+Point your browser to the URL displayed in the terminal (e.g. `http://localhost:5173/`).
 
-### Wrangler Setup
-
-Within your project's `wrangler.jsonc`:
-
-- Replace the `__change_me__` placeholders with a name for your application
-
-- Create a new D1 database:
+## Deployment
 
 ```shell
-npx wrangler d1 create my-project-db
+pnpm release
 ```
 
-Copy the database ID provided and paste it into your project's `wrangler.jsonc` file:
+## Project Structure
 
-```jsonc
-{
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "my-project-db",
-      "database_id": "your-database-id",
-    },
-  ],
-}
-```
+- `src/app/content` - contains Markdown files for all the content within the application (Docs, FAQs, and Legal pages)
 
-### Authentication Setup
+## License
 
-For authentication setup and configuration, including optional bot protection, see the [Authentication Documentation](https://docs.rwsdk.com/core/authentication).
-
-## Further Reading
-
-- [RedwoodSDK Documentation](https://docs.rwsdk.com/)
-- [Cloudflare Workers Secrets](https://developers.cloudflare.com/workers/runtime-apis/secrets/)
+MIT
