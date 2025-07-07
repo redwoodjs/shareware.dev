@@ -3,7 +3,14 @@
 import { useState, useRef } from "react";
 import { Icon } from "./Icon";
 
-const DragAndDropWithPreviews = ({ name }: { name: string }) => {
+type DragAndDropWithPreviewsProps = {
+  name: string;
+} & React.InputHTMLAttributes<HTMLInputElement>;
+
+const DragAndDropWithPreviews = ({
+  name,
+  ...rest
+}: DragAndDropWithPreviewsProps) => {
   const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
   const [isDragging, setIsDragging] = useState(false);
@@ -61,8 +68,6 @@ const DragAndDropWithPreviews = ({ name }: { name: string }) => {
           name={name}
           ref={fileInputRef}
           className="hidden"
-          accept="image/*"
-          multiple={true}
           onChange={(e) => {
             if (e.target.files) {
               const newFiles = Array.from(e.target.files);
@@ -70,6 +75,7 @@ const DragAndDropWithPreviews = ({ name }: { name: string }) => {
               createPreviews(newFiles);
             }
           }}
+          {...rest}
         />
         <div className="flex items-center gap-2">
           <Icon id="upload" />

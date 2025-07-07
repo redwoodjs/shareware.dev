@@ -21,7 +21,7 @@ const AddOnForm = ({ categories }: { categories: Category[] }) => {
   };
 
   return (
-    <form action={handleSubmit}>
+    <form action={handleSubmit} encType="multipart/form-data">
       <div className="field">
         <label htmlFor="firstName">First Name</label>
         <input type="text" id="firstName" name="firstName" />
@@ -46,11 +46,15 @@ const AddOnForm = ({ categories }: { categories: Category[] }) => {
         <label htmlFor="demoUrl">URL of Demo</label>
         <input type="url" id="demoUrl" name="demoUrl" />
       </div>
-      {/* <div className="field">
+      <div className="field">
         <label>Cover Image</label>
-        <DragAndDropWithPreviews name="coverImage" />
+        <DragAndDropWithPreviews
+          name="coverImage"
+          accept="image/*"
+          multiple={false}
+        />
         <p className="text-xs">Recommended size: 1024x512</p>
-      </div> */}
+      </div>
       <div className="field">
         <label htmlFor="briefDescription">Brief Description</label>
         <textarea id="briefDescription" name="briefDescription" />
