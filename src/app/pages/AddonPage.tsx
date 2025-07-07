@@ -5,6 +5,7 @@ import { RequestInfo } from "rwsdk/worker";
 import { db } from "@/db";
 import { Prisma } from "@generated/prisma";
 import { AddOnContent } from "../components/AddOnContent";
+import { getGitHubAvatarUrl } from "../lib/githubHelpers";
 
 export type AddOnWithStatusAndCategory = Prisma.AddOnGetPayload<{
   include: {
@@ -39,7 +40,10 @@ const AddonPage = async ({ ctx, params }: RequestInfo) => {
             <div className="mb-5">
               <Credit
                 link={`https://github.com/${addon?.owner}/${addon?.repo}`}
-                avatar={{ src: "/images/placeholder-avatar.png", alt: "owner" }}
+                avatar={{
+                  src: getGitHubAvatarUrl(addon?.owner ?? ""),
+                  alt: addon?.owner ?? "",
+                }}
                 owner={addon?.owner ?? ""}
                 repo={addon?.repo ?? ""}
               />
