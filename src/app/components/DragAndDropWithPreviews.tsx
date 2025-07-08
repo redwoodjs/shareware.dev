@@ -5,14 +5,18 @@ import { Icon } from "./Icon";
 
 type DragAndDropWithPreviewsProps = {
   name: string;
+  defaultValue?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const DragAndDropWithPreviews = ({
   name,
+  defaultValue = "",
   ...rest
 }: DragAndDropWithPreviewsProps) => {
   const [files, setFiles] = useState<File[]>([]);
-  const [previews, setPreviews] = useState<string[]>([]);
+  const [previews, setPreviews] = useState<string[]>(
+    defaultValue ? [defaultValue] : []
+  );
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -81,14 +85,14 @@ const DragAndDropWithPreviews = ({
           <Icon id="upload" />
           <strong>Choose File</strong> or <strong>Drag and Drop</strong>
         </div>
-        {files.length > 0 && (
+        {previews.length > 0 && (
           <div className="flex flex-wrap gap-5 justify-between mt-2">
-            {files.map((file, index) => (
-              <div key={file.name} style={{ position: "relative" }}>
+            {previews.map((file, index) => (
+              <div key={index} style={{ position: "relative" }}>
                 {previews[index] && (
                   <img
-                    src={previews[index]}
-                    alt={file.name}
+                    src={file}
+                    alt={file}
                     className="max-w-[185px] max-h-[185px] object-cover"
                   />
                 )}

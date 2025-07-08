@@ -11,6 +11,8 @@ import { useState } from "react";
 import { addAddOn } from "../actions";
 import { toast } from "sonner";
 import { link } from "@/app/shared/links";
+import { RequiredField } from "@/app/components/RequiredField";
+import { DragAndDropWithPreviews } from "@/app/components/DragAndDropWithPreviews";
 
 const NewAddOnButton = ({ categories }: { categories: Category[] }) => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -89,7 +91,9 @@ const NewAddOnButton = ({ categories }: { categories: Category[] }) => {
                     />
                   </div>
                   <div className="field">
-                    <label htmlFor="firstName">First Name</label>
+                    <label htmlFor="firstName">
+                      First Name <RequiredField />
+                    </label>
                     <input
                       type="text"
                       id="firstName"
@@ -98,7 +102,9 @@ const NewAddOnButton = ({ categories }: { categories: Category[] }) => {
                     />
                   </div>
                   <div className="field">
-                    <label htmlFor="lastName">Last Name</label>
+                    <label htmlFor="lastName">
+                      Last Name <RequiredField />
+                    </label>
                     <input type="text" id="lastName" name="lastName" required />
                   </div>
                   <div className="field">
@@ -106,16 +112,21 @@ const NewAddOnButton = ({ categories }: { categories: Category[] }) => {
                     <input type="email" id="email" name="email" required />
                   </div>
                   <div className="field">
-                    <label htmlFor="githubRepo">GitHub Repository URL</label>
+                    <label htmlFor="githubRepo">
+                      GitHub Repository URL <RequiredField />
+                    </label>
                     <input
                       type="text"
                       id="githubRepo"
                       name="githubRepo"
+                      placeholder="https://github.com/"
                       required
                     />
                   </div>
                   <div className="field">
-                    <label htmlFor="addonName">Add on Package Name</label>
+                    <label htmlFor="addonName">
+                      Add on Package Name <RequiredField />
+                    </label>
                     <input
                       type="text"
                       id="addonName"
@@ -124,11 +135,33 @@ const NewAddOnButton = ({ categories }: { categories: Category[] }) => {
                     />
                   </div>
                   <div className="field">
-                    <label htmlFor="demoUrl">URL of Demo</label>
-                    <input type="url" id="demoUrl" name="demoUrl" required />
+                    <label htmlFor="demoUrl">
+                      URL of Demo <RequiredField />
+                    </label>
+                    <input
+                      type="url"
+                      id="demoUrl"
+                      name="demoUrl"
+                      placeholder="https://"
+                      required
+                    />
                   </div>
                   <div className="field">
-                    <label htmlFor="briefDescription">Brief Description</label>
+                    <label htmlFor="coverImage">
+                      Cover Image <RequiredField />
+                    </label>
+                    <DragAndDropWithPreviews
+                      name="coverImage"
+                      accept="image/*"
+                      multiple={false}
+                      required
+                    />
+                    <p className="text-xs">Recommended size: 1024x512</p>
+                  </div>
+                  <div className="field">
+                    <label htmlFor="briefDescription">
+                      Brief Description <RequiredField />
+                    </label>
                     <textarea
                       id="briefDescription"
                       name="briefDescription"
@@ -137,8 +170,10 @@ const NewAddOnButton = ({ categories }: { categories: Category[] }) => {
                   </div>
                   {categories && (
                     <div className="field">
-                      <label htmlFor="category">Category</label>
-                      <select id="category" name="category">
+                      <label htmlFor="category">
+                        Category <RequiredField />
+                      </label>
+                      <select id="category" name="category" required>
                         <option value="">Select a Category</option>
                         {categories.map((category) => (
                           <option key={category.id} value={category.id}>

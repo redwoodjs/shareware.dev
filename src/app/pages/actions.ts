@@ -5,6 +5,7 @@ import {
   validateGitHubRepo,
   validateRequiredFields,
   getOwnerAndRepo,
+  uploadImageToR2,
 } from "@/app/lib/formHelpers";
 
 export const toggleAdminBar = async (
@@ -53,17 +54,34 @@ export const submitAddOn = async (formData: FormData) => {
     const briefDescription = formData.get("briefDescription") as string;
     const coverImage = formData.get("coverImage") as File;
     const category = formData.get("category") as string;
+    const terms = formData.has("terms") as boolean;
+
+    console.log({
+      firstName,
+      lastName,
+      email,
+      githubRepo,
+      addonName,
+      demoUrl,
+      briefDescription,
+      coverImage,
+      category,
+      terms,
+    });
 
     if (!validateGitHubRepo(githubRepo)) {
       return { error: "Invalid github repo" };
     }
 
+    if (!terms) {
+      return { error: "You must accept the terms and conditions" };
+    }
+
     const { owner, repo } = getOwnerAndRepo(githubRepo);
 
-    // validate form
-    // TODO: Add Cover Image to the list
+    // validate form - all fields are required
     if (
-      validateRequiredFields([
+      !validateRequiredFields([
         firstName,
         lastName,
         email,
@@ -72,10 +90,14 @@ export const submitAddOn = async (formData: FormData) => {
         demoUrl,
         briefDescription,
         category,
+        coverImage.name,
       ])
     ) {
       return { error: "All fields are required" };
     }
+
+    // Stream the file directly to R2
+    const tempCoverImage = await uploadImageToR2(coverImage);
 
     // add the add on to the database
     const addOn = await db.addOn.create({
@@ -84,7 +106,7 @@ export const submitAddOn = async (formData: FormData) => {
         lastName,
         email,
         avatar: "",
-        cover: "",
+        cover: tempCoverImage,
         demo: demoUrl,
         repo: repo!,
         owner: owner!,

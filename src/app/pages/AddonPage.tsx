@@ -88,7 +88,7 @@ const AddonPage = async ({ ctx, params }: RequestInfo) => {
         </div>
         {/* right column */}
         <div className="half-grid--right addon-content">
-          <img src="/images/placeholder-addon.png" alt="something" />
+          {addon?.cover && <img src={addon.cover} alt={addon.name} />}
           <AddOnContent repo={addon?.repo ?? ""} owner={addon?.owner ?? ""} />
         </div>
       </div>

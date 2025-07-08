@@ -11,7 +11,7 @@ import { AddOnWithCategoryAndStatus } from "../DashboardPage";
 import { Category } from "@generated/prisma";
 import { toast } from "sonner";
 import { updateAddOn } from "../actions";
-import { link } from "@/app/shared/links";
+import { DragAndDropWithPreviews } from "@/app/components/DragAndDropWithPreviews";
 
 const EditAddOnSheet = ({
   addOn,
@@ -163,6 +163,21 @@ const EditAddOnSheet = ({
                   />
                 </div>
                 <div className="field">
+                  <label htmlFor="coverImage">Cover Image</label>
+                  <DragAndDropWithPreviews
+                    name="coverImage"
+                    accept="image/*"
+                    defaultValue={addOn.cover ?? undefined}
+                    multiple={false}
+                  />
+                  <input
+                    type="hidden"
+                    name="prevCoverImage"
+                    value={addOn.cover ?? ""}
+                  />
+                  <p className="text-xs">Recommended size: 1024x512</p>
+                </div>
+                <div className="field">
                   <label htmlFor="briefDescription">Brief Description</label>
                   <textarea
                     id="briefDescription"
@@ -174,7 +189,11 @@ const EditAddOnSheet = ({
                 {categories && (
                   <div className="field">
                     <label htmlFor="category">Category</label>
-                    <select id="category" name="category">
+                    <select
+                      id="category"
+                      name="category"
+                      defaultValue={addOn.category.id}
+                    >
                       <option value="">Select a Category</option>
                       {categories.map((category) => (
                         <option

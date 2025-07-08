@@ -442,7 +442,7 @@
     }
 
     h3 {
-      @apply font-bold text-[24px] mb-2 leading-[28px];
+      @apply font-chicago text-[20px] mb-2 leading-[28px];
     }
 
     code:not(pre code) {

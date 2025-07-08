@@ -7,13 +7,19 @@ const AddOnRow = ({ addon }: { addon: AddOn }) => {
   return (
     <div className="grid grid-cols-2 gap-12">
       <div>
-        <Window title="Feature Request">
-          <>
-            <a href={link("/addon/:slug", { slug: addon.id })}>
-              <img src="/images/placeholder-addon.png" alt="Add On" />
-            </a>
-          </>
-        </Window>
+        {addon.cover && (
+          <Window title="Feature Request">
+            <>
+              <a href={link("/addon/:slug", { slug: addon.id })}>
+                <img
+                  src={addon.cover}
+                  alt={addon.name}
+                  className="size-full object-cover"
+                />
+              </a>
+            </>
+          </Window>
+        )}
       </div>
       <div>
         <h2 className="subheading mb-4">

@@ -37,7 +37,7 @@
   "r2_buckets": [
     {
       "bucket_name": "shareware",
-      "binding": "shareware"
+      "binding": "R2"
     }
   ]
 }

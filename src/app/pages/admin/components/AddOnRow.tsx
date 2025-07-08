@@ -12,6 +12,7 @@ import { useRef, useState } from "react";
 import { DeleteAddOn } from "./DeleteAddOn";
 import { AddOnWithCategoryAndStatus } from "../DashboardPage";
 import { Category } from "@generated/prisma";
+import { getGitHubAvatarUrl } from "@/app/lib/githubHelpers";
 
 const AddOnRow = ({
   addon,
@@ -68,7 +69,7 @@ const AddOnRow = ({
       <div className="w-full">
         <Credit
           avatar={{
-            src: addon.avatar ?? undefined,
+            src: getGitHubAvatarUrl(addon.owner) ?? undefined,
             alt: addon.owner,
           }}
           owner={addon.owner}

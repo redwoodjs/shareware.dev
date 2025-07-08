@@ -6,6 +6,8 @@ import {
   validateGitHubRepo,
   validateRequiredFields,
   getOwnerAndRepo,
+  uploadImageToR2,
+  deleteImageFromR2,
 } from "@/app/lib/formHelpers";
 import { db } from "@/db";
 import { User } from "@generated/prisma";
@@ -166,12 +168,16 @@ export const addAddOn = async (formData: FormData) => {
     const status = formData.get("status") as string;
     const category = formData.get("category") as string;
     const featured = formData.has("featured");
+    const coverImage = formData.get("coverImage") as File;
 
     if (!validateGitHubRepo(githubRepo)) {
       return { error: "Invalid github repo" };
     }
 
     const { owner, repo } = getOwnerAndRepo(githubRepo);
+
+    // Stream the file directly to R2
+    const tempCoverImage = await uploadImageToR2(coverImage);
 
     await db.addOn.create({
       data: {
@@ -182,6 +188,7 @@ export const addAddOn = async (formData: FormData) => {
         owner: owner!,
         name: addonName,
         demo: demoUrl,
+        cover: tempCoverImage,
         description: briefDescription,
         status: { connect: { id: parseInt(status) } },
         category: {
@@ -201,9 +208,14 @@ export const addAddOn = async (formData: FormData) => {
 
 export const deleteAddOn = async (addOnId: string) => {
   try {
-    await db.addOn.delete({
+    const addOn = await db.addOn.delete({
       where: { id: addOnId },
     });
+
+    // delete the cover image if it exists
+    if (addOn?.cover) {
+      await deleteImageFromR2(addOn.cover);
+    }
 
     return { success: true };
   } catch (error) {
@@ -225,12 +237,25 @@ export const updateAddOn = async (formData: FormData) => {
     const status = formData.get("status") as string;
     const category = formData.get("category") as string;
     const featured = formData.has("featured");
+    const prevCoverImage = formData.get("prevCoverImage") as string;
+    const coverImage = formData.get("coverImage") as File;
 
     if (!validateGitHubRepo(githubRepo)) {
       return { error: "Invalid github repo" };
     }
 
     const { owner, repo } = getOwnerAndRepo(githubRepo);
+
+    // delete the previous cover image
+    if (prevCoverImage && coverImage) {
+      await deleteImageFromR2(prevCoverImage);
+    }
+
+    // Stream the file directly to R2
+    let tempCoverImage = prevCoverImage;
+    if (coverImage) {
+      tempCoverImage = await uploadImageToR2(coverImage);
+    }
 
     await db.addOn.update({
       where: { id: addOnId },
@@ -242,6 +267,7 @@ export const updateAddOn = async (formData: FormData) => {
         owner: owner!,
         name: addonName,
         demo: demoUrl,
+        cover: tempCoverImage,
         description: briefDescription,
         status: { connect: { id: parseInt(status) } },
         category: {
@@ -306,5 +332,23 @@ export const updateAddOnOrder = async (addOnIds: string[]) => {
   } catch (error) {
     console.error(error);
     return { error: "Failed to update add on order" };
+  }
+};
+
+export const uploadAvatar = async (userId: string, avatar: File) => {
+  try {
+    const tempAvatar = await uploadImageToR2(avatar);
+
+    console.log("tempAvatar", tempAvatar);
+
+    await db.user.update({
+      where: { id: userId },
+      data: { avatar: tempAvatar },
+    });
+
+    return { success: true, error: null, avatar: tempAvatar };
+  } catch (error) {
+    console.error(error);
+    return { error: "Failed to update avatar", success: false };
   }
 };

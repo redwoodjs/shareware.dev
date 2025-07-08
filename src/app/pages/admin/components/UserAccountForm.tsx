@@ -7,6 +7,7 @@ import { DeleteUser } from "./DeleteUser";
 import { useState } from "react";
 import { toast } from "sonner";
 import { updateAccount } from "../actions";
+import { DragAndDropAvatar } from "@/app/components/DragAndDropAvatar";
 
 const UserAccountForm = ({ user }: { user: User }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,17 +32,11 @@ const UserAccountForm = ({ user }: { user: User }) => {
         className="grid grid-cols-[160px_1fr] gap-x-12"
       >
         <div>
-          {!user.avatar && (
-            <label
-              htmlFor="avatar"
-              className="rounded-full center text-white bg-black hover:bg-link aspect-square text-center cursor-pointer"
-            >
-              <input type="file" name="avatar" className="hidden" id="avatar" />
-              Upload an
-              <br />
-              Avatar
-            </label>
-          )}
+          <DragAndDropAvatar
+            name="avatar"
+            userId={user.id}
+            defaultValue={user.avatar ?? ""}
+          />
         </div>
 
         <div className="form-grid">
