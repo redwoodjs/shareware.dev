@@ -82,7 +82,6 @@ export default defineApp([
       route("/docs/:slug", DocsPage),
     ]),
     ...authRoutes,
-    prefix("/admin", [isAuthenticated, adminRoutes]),
     route("/storage/*", [
       async ({ params }) => {
         // 1. Attempts to fetch object from R2 bucket using the path parameter
@@ -99,5 +98,6 @@ export default defineApp([
         });
       },
     ]),
+    prefix("/admin", [isAuthenticated, adminRoutes]),
   ]),
 ]);
