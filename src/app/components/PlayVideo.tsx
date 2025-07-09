@@ -35,7 +35,7 @@ const PlayVideo = () => {
         </div>
         <div className="flex-1 border-l-[3px] border-black p-4 text-left pr-6">
           <div className="font-chicago">See What's Possible</div>
-          <div>5 min 17 sec</div>
+          <div>45 seconds</div>
         </div>
       </button>
 

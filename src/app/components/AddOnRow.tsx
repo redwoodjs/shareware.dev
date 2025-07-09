@@ -5,7 +5,7 @@ import { Window } from "./Window";
 
 const AddOnRow = ({ addon }: { addon: AddOn }) => {
   return (
-    <div className="grid grid-cols-2 gap-12">
+    <div className="grid md:grid-cols-2 gap-12">
       <div>
         {addon.cover && (
           <Window title="Feature Request">

@@ -62,8 +62,13 @@
   @apply rounded-[5px];
 }
 
+@utility page-mobile {
+  @apply pl-5 pr-12 md:px-0;
+}
+
 @utility page-width {
-  @apply max-w-[1400px] w-full mx-auto page-margin;
+  /* needs more padding on the right because of the scrollbar */
+  @apply max-w-[1400px] w-full mx-auto pl-5 pr-12 md:px-12;
 }
 
 @utility page-margin {
@@ -268,7 +273,7 @@
   }
 
   footer ul {
-    @apply center gap-4 font-chicago text-white;
+    @apply flex-wrap md:flex-nowrap center gap-4 font-chicago text-white;
     li {
       @apply flex items-center gap-4;
       &:after {

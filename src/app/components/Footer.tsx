@@ -41,7 +41,7 @@ const Footer = ({ condensed = false }: { condensed?: boolean }) => {
           </a>
         </li>
       </ul>
-      <p className="font-chicago text-white center mb-5">
+      <p className="font-chicago text-white flex-wrap center mb:7 md:mb-5 whitespace-wrap page-mobile md:page-margin">
         Copyright &copy; {new Date().getFullYear()}.&nbsp;
         <a
           href={constants.REDWOODJS}

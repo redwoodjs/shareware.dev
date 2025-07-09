@@ -44,8 +44,8 @@ const HomePage = async ({ ctx }: RequestInfo) => {
       />
 
       {/* hero */}
-      <div className="grid grid-cols-[auto_1fr] gap-x-12 w-screen bg-[#ebe6e5]">
-        <div className="flex items-baseline justify-start h-full">
+      <div className="grid md:grid-cols-[auto_1fr] gap-x-12 w-screen bg-[#ebe6e5]">
+        <div className="hidden md:flex items-baseline justify-start h-full">
           <img
             src="/images/hero.png"
             alt="Hero"
@@ -54,19 +54,19 @@ const HomePage = async ({ ctx }: RequestInfo) => {
           />
         </div>
         <div>
-          <div className="px-10 py-4 flex justify-end mb-10">
+          <div className="px-5 py-4 flex justify-end mb-10">
             <Nav />
           </div>
-          <div className="max-w-[575px] mb-10">
+          <div className="md:max-w-[575px] w-full mb-10 page-mobile md:px-0">
             <img
               src="/images/sdk-logo.svg"
               alt="RedwoodSDK"
               className="mb-10"
             />
-            <h1 className="font-serif text-[145px] leading-[162px] mb-[22px]">
+            <h1 className="font-serif text-[72px] leading-[80px] md:text-[145px] md:leading-[162px] mb-[22px]">
               Add Ons
             </h1>
-            <h2 className="font-serif text-[36px] leading-[50px] mb-4">
+            <h2 className="font-serif text-[24px] leading-[30px] md:text-[36px] md:leading-[50px] mb-4">
               Add powerful features to your application with a single command.
             </h2>
             <p className="text-lg leading-[28px] mb-[32px]">
@@ -91,8 +91,8 @@ const HomePage = async ({ ctx }: RequestInfo) => {
       )}
 
       {/* frequently asked questions */}
-      <section className="page-margin mb-[120px]">
-        <div className="grid grid-cols-2 gap-x-[50px]">
+      <section className="page-mobile md:page-margin mb-[120px]">
+        <div className="md:grid md:grid-cols-2 gap-x-[50px]">
           <div className="col-span-2">
             <h2 className="subheading mb-8">Frequently Asked Questions</h2>
           </div>

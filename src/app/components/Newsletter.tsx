@@ -17,7 +17,7 @@ export const Newsletter = () => {
     <Window title="Don't Build it Twice">
       <form
         action={handleSubmit}
-        className="grid grid-cols-[3fr_1fr] gap-x-[100px] newsletter px-10 py-4"
+        className="md:grid md:grid-cols-[3fr_1fr] gap-x-[100px] newsletter px-10 py-4"
       >
         <div className="col-span-2 flex gap-x-4 pb-12">
           <img
@@ -41,7 +41,7 @@ export const Newsletter = () => {
             <input type="email" id="email" name="email" />
           </div>
         </div>
-        <div>
+        <div className="flex md:flex-col gap-4 items-center">
           <button type="submit" className="newsletter-button primary w-[140px]">
             <span>Subscribe</span>
           </button>
