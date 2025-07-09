@@ -26,7 +26,9 @@ const DocsPage = async ({ ctx, params }: RequestInfo) => {
             dangerouslySetInnerHTML={{ __html: html ?? "" }}
           />
         </div>
-        <aside className="on-this-page-nav text-sm font-bold">
+
+        {/* on this page */}
+        <aside className="on-this-page-nav text-sm font-bold hidden lg:block">
           <div className="sticky top-10 pb-20 text-left inline-block">
             <ul className="flex flex-col gap-3">
               <li className="header">On this Page</li>

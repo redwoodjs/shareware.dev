@@ -10,7 +10,7 @@ const Footer = ({ condensed = false }: { condensed?: boolean }) => {
           <Newsletter />
         </div>
       )}
-      <ul className="social-media mb-12">
+      <ul className="social-media mb-12 page-mobile md:page-margin">
         <li>
           <a href={constants.GITHUB} target="_blank" rel="noopener noreferrer">
             GITHUB
@@ -41,7 +41,7 @@ const Footer = ({ condensed = false }: { condensed?: boolean }) => {
           </a>
         </li>
       </ul>
-      <p className="font-chicago text-white flex-wrap center mb:7 md:mb-5 whitespace-wrap page-mobile md:page-margin">
+      <p className="font-chicago text-white flex-wrap center mb-9 md:mb-5 whitespace-wrap page-mobile md:page-margin">
         Copyright &copy; {new Date().getFullYear()}.&nbsp;
         <a
           href={constants.REDWOODJS}
@@ -52,7 +52,7 @@ const Footer = ({ condensed = false }: { condensed?: boolean }) => {
         </a>
         &nbsp;All Rights Reserved.
       </p>
-      <ul>
+      <ul className="page-mobile md:page-margin">
         <li>
           <a href={link("/legal/:slug", { slug: "terms" })}>
             Terms and Conditions
