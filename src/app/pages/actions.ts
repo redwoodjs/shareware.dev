@@ -87,7 +87,6 @@ export const submitAddOn = async (formData: FormData) => {
         email,
         githubRepo,
         addonName,
-        demoUrl,
         briefDescription,
         category,
         coverImage.name,
