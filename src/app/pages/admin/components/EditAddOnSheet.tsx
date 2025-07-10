@@ -12,6 +12,7 @@ import { Category } from "@generated/prisma";
 import { toast } from "sonner";
 import { updateAddOn } from "../actions";
 import { DragAndDropWithPreviews } from "@/app/components/DragAndDropWithPreviews";
+import { RequiredField } from "@/app/components/RequiredField";
 
 const EditAddOnSheet = ({
   addOn,
@@ -104,7 +105,9 @@ const EditAddOnSheet = ({
                   </a>
                 </div>
                 <div className="field">
-                  <label htmlFor="firstName">First Name</label>
+                  <label htmlFor="firstName">
+                    First Name <RequiredField />
+                  </label>
                   <input
                     type="text"
                     id="firstName"
@@ -114,7 +117,9 @@ const EditAddOnSheet = ({
                   />
                 </div>
                 <div className="field">
-                  <label htmlFor="lastName">Last Name</label>
+                  <label htmlFor="lastName">
+                    Last Name <RequiredField />
+                  </label>
                   <input
                     type="text"
                     id="lastName"
@@ -124,7 +129,9 @@ const EditAddOnSheet = ({
                   />
                 </div>
                 <div className="field">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email">
+                    Email <RequiredField />
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -134,16 +141,21 @@ const EditAddOnSheet = ({
                   />
                 </div>
                 <div className="field">
-                  <label htmlFor="githubRepo">GitHub Repository URL</label>
+                  <label htmlFor="githubRepo">
+                    GitHub Repository URL <RequiredField />
+                  </label>
                   <input
                     type="text"
                     id="githubRepo"
                     name="githubRepo"
                     defaultValue={`https://github.com/${addOn.owner}/${addOn.repo}`}
+                    required
                   />
                 </div>
                 <div className="field">
-                  <label htmlFor="addonName">Add on Package Name</label>
+                  <label htmlFor="addonName">
+                    Add on Package Name <RequiredField />
+                  </label>
                   <input
                     type="text"
                     id="addonName"
@@ -159,11 +171,12 @@ const EditAddOnSheet = ({
                     id="demoUrl"
                     defaultValue={addOn.demo}
                     name="demoUrl"
-                    required
                   />
                 </div>
                 <div className="field">
-                  <label htmlFor="coverImage">Cover Image</label>
+                  <label htmlFor="coverImage">
+                    Cover Image <RequiredField />
+                  </label>
                   <DragAndDropWithPreviews
                     name="coverImage"
                     accept="image/*"
@@ -178,7 +191,9 @@ const EditAddOnSheet = ({
                   <p className="text-xs">Recommended size: 1024x512</p>
                 </div>
                 <div className="field">
-                  <label htmlFor="briefDescription">Brief Description</label>
+                  <label htmlFor="briefDescription">
+                    Brief Description <RequiredField />
+                  </label>
                   <textarea
                     id="briefDescription"
                     defaultValue={addOn.description}
@@ -188,11 +203,14 @@ const EditAddOnSheet = ({
                 </div>
                 {categories && (
                   <div className="field">
-                    <label htmlFor="category">Category</label>
+                    <label htmlFor="category">
+                      Category <RequiredField />
+                    </label>
                     <select
                       id="category"
                       name="category"
                       defaultValue={addOn.category.id}
+                      required
                     >
                       <option value="">Select a Category</option>
                       {categories.map((category) => (

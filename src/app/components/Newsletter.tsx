@@ -20,15 +20,19 @@ export const Newsletter = () => {
         className="md:grid md:grid-cols-[3fr_1fr] gap-x-[100px] newsletter px-10 py-4"
       >
         <div className="col-span-2 flex gap-x-4 pb-12">
-          <img
-            src="/images/info-icon.png"
-            alt="Info Icon"
-            srcSet="/images/info-icon@2x.png 2x, /images/info-icon.png 1x"
-          />
-          <p className="font-chicago">
-            Get notified when we launch new add ons and receive exclusive early
-            access opportunities.
-          </p>
+          <div>
+            <img
+              src="/images/info-icon.png"
+              alt="Info Icon"
+              srcSet="/images/info-icon@2x.png 2x, /images/info-icon.png 1x"
+            />
+          </div>
+          <div className="flex-1">
+            <p className="font-chicago">
+              Get notified when we launch new add ons and receive exclusive
+              early access opportunities.
+            </p>
+          </div>
         </div>
         <div>
           <div className="field">

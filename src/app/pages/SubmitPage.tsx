@@ -17,7 +17,7 @@ const SubmitPage = async ({ ctx }: RequestInfo) => {
       />
 
       <div className="half-grid">
-        <div className="half-grid--left pr-10 content">
+        <div className="half-grid--left content">
           <h1 className="page-title">Submit Your Add On</h1>
           <h2 className="subheading mb-4">
             Help Build the RedwoodSDK Ecosystem
@@ -68,7 +68,7 @@ const SubmitPage = async ({ ctx }: RequestInfo) => {
             </li>
           </ol>
         </div>
-        <div className="half-grid--right pt-[100px]">
+        <div className="half-grid--right pt-12 lg:pt-[100px] md:px-8">
           <AddOnForm categories={categories} />
         </div>
       </div>

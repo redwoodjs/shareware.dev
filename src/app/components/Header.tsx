@@ -26,7 +26,7 @@ const Header = async () => {
   });
 
   return (
-    <div className="flex justify-between items-center px-10 py-4 border-b-3 border-black">
+    <div className="flex justify-between items-center pl-10 pr-12 py-4 border-b-3 border-black">
       <a href={link("/")}>
         <img
           src="/images/sdk-logo.svg"

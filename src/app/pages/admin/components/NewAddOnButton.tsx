@@ -135,15 +135,12 @@ const NewAddOnButton = ({ categories }: { categories: Category[] }) => {
                     />
                   </div>
                   <div className="field">
-                    <label htmlFor="demoUrl">
-                      URL of Demo <RequiredField />
-                    </label>
+                    <label htmlFor="demoUrl">URL of Demo</label>
                     <input
                       type="url"
                       id="demoUrl"
                       name="demoUrl"
                       placeholder="https://"
-                      required
                     />
                   </div>
                   <div className="field">

@@ -68,7 +68,7 @@
 
 @utility page-width {
   /* needs more padding on the right because of the scrollbar */
-  @apply max-w-[1400px] w-full mx-auto pl-5 pr-12 md:px-12;
+  @apply max-w-[1400px] w-full mx-auto px-5 md:px-12;
 }
 
 @utility page-margin {
@@ -111,7 +111,7 @@
   }
 
   body {
-    @apply font-sans p-0 m-0 bg-background dark:bg-black w-screen overflow-x-hidden overflow-y-auto;
+    @apply font-sans p-0 m-0 bg-background dark:bg-black w-full; /*overflow-x-hidden overflow-y-auto; */
   }
 
   .no-scroll {
@@ -123,7 +123,7 @@
   }
 
   .subheading {
-    @apply text-[20px] md:text-[35px] font-serif mb-2 leading-[1.3];
+    @apply text-[35px] font-serif mb-2 leading-[1.3];
   }
 
   p {
@@ -319,12 +319,22 @@
   }
 
   .half-grid {
-    @apply grid grid-cols-[40%_60%] h-full;
+    @apply lg:grid lg:grid-cols-[40%_60%] h-full p-0;
     .half-grid--left {
-      @apply border-r-1 border-black pt-10;
+      @apply border-b-1 lg:border-r-1 lg:border-b-0 border-black px-0 pb-0 pt-10 md:pr-12;
     }
     .half-grid--right {
-      @apply pt-10 px-8 pb-20 max-w-[700px] w-full;
+      @apply pt-10 pb-20 max-w-[700px] w-full;
+    }
+  }
+
+  .addon-grid {
+    @apply xl:grid xl:grid-cols-[40%_60%] h-full p-0;
+    .addon-grid--left {
+      @apply border-b-1 xl:border-r-1 xl:border-b-0 border-black px-0 pb-0 pt-10 md:pr-12;
+    }
+    .addon-grid--right {
+      @apply pt-10 pb-20 xl:max-w-[700px] w-full xl:px-8;
     }
   }
 
@@ -384,7 +394,7 @@
       @apply z-[-1] content-[''] h-full w-4 border-l-2 border-b-2 border-black absolute left-[10px] top-3;
     }
     pre {
-      @apply mb-10 bg-[#2d2d2d] text-[#cccccc] p-4 rounded-corners overflow-x-auto;
+      @apply mb-10 bg-[#2d2d2d] text-[#cccccc] p-4 rounded-corners overflow-x-auto w-full;
     }
   }
 
@@ -459,8 +469,18 @@
       @apply bg-[#DBCFBD] p-1 rounded-[4px] break-all;
     }
 
+    .addon-content pre,
+    .addon-content pre[class*="language-"],
     pre {
-      @apply w-full bg-[#2d2d2d] text-[#cccccc] p-4 rounded-corners mb-10 overflow-x-auto;
+      width: 100% !important;
+      max-width: 100% !important;
+      @apply bg-[#2d2d2d] text-[#cccccc] p-4 rounded-corners mb-10 overflow-x-auto;
+      code {
+        @apply block overflow-x-auto;
+        white-space: pre-wrap !important;
+        word-break: break-word !important;
+        width: 100% !important;
+      }
     }
 
     .code-toolbar {

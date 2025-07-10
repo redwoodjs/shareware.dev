@@ -12,14 +12,14 @@ const InteriorLayout = ({ children, requestInfo }: LayoutProps) => {
   return (
     <div>
       <Toaster />
-      <Header currentPath={currentPath} />
+      <Header />
       <div className="grid md:grid-cols-[270px_1fr]">
         <div className="border-r-2 border-black">
           <div className="sticky top-10 pt-10 pb-20 px-10 hidden md:block">
             <AsideNav currentPath={currentPath} />
           </div>
         </div>
-        <div className="pl-5 pr-12 md:pl-12">{children}</div>
+        <div className="px-5 md:pl-12">{children}</div>
       </div>
       <Footer />
     </div>

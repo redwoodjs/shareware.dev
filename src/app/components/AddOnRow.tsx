@@ -30,18 +30,20 @@ const AddOnRow = ({ addon }: { addon: AddOn }) => {
             {addon.name}
           </a>
         </h2>
-        <p className="font-chicago text-xl mb-6 tracking-tight">
+        <p className="font-chicago text-md md:text-xl mb-6 tracking-tight">
           {addon.description}
         </p>
         <div className="button-group">
-          <a
-            href={addon.demo}
-            target="_blank"
-            rel="noreferrer"
-            className="button"
-          >
-            Live Demo
-          </a>
+          {addon.demo && (
+            <a
+              href={addon.demo}
+              target="_blank"
+              rel="noreferrer"
+              className="button"
+            >
+              Live Demo
+            </a>
+          )}
           <a
             href={link("/addon/:slug", { slug: addon.id })}
             className="button primary"

@@ -59,16 +59,8 @@ const AddOnForm = ({ categories }: { categories: Category[] }) => {
         <input type="text" id="addonName" name="addonName" required />
       </div>
       <div className="field">
-        <label htmlFor="demoUrl">
-          URL of Demo <RequiredField />
-        </label>
-        <input
-          type="url"
-          id="demoUrl"
-          name="demoUrl"
-          placeholder="https://"
-          required
-        />
+        <label htmlFor="demoUrl">URL of Demo</label>
+        <input type="url" id="demoUrl" name="demoUrl" placeholder="https://" />
       </div>
       <div className="field">
         <label>

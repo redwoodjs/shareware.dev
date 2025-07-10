@@ -33,10 +33,10 @@ const AddonPage = async ({ ctx, params }: RequestInfo) => {
 
   return (
     <>
-      <div className="half-grid">
+      <div className="addon-grid">
         {/* left column */}
-        <div className="half-grid--left">
-          <div className="sticky top-10 pb-20 pr-12">
+        <div className="addon-grid--left">
+          <div className="sticky top-10 pb-20 pr-12 md:pr-0 xl:pr-12">
             <div className="mb-5">
               <Credit
                 link={`https://github.com/${addon?.owner}/${addon?.repo}`}
@@ -53,14 +53,16 @@ const AddonPage = async ({ ctx, params }: RequestInfo) => {
             <p className="text-lg tracking-tight leading-relaxed mb-10">
               {addon?.description}
             </p>
-            <a
-              href={addon?.demo}
-              target="_blank"
-              rel="noreferrer"
-              className="button primary mb-10"
-            >
-              View Demo
-            </a>
+            {addon?.demo && (
+              <a
+                href={addon?.demo}
+                target="_blank"
+                rel="noreferrer"
+                className="button primary mb-10"
+              >
+                View Demo
+              </a>
+            )}
 
             <ul className="flex gap-x-2 addon-links">
               <li>
@@ -87,8 +89,10 @@ const AddonPage = async ({ ctx, params }: RequestInfo) => {
           </div>
         </div>
         {/* right column */}
-        <div className="half-grid--right addon-content">
-          {addon?.cover && <img src={addon.cover} alt={addon.name} />}
+        <div className="addon-grid--right addon-content">
+          {addon?.cover && (
+            <img src={addon.cover} alt={addon.name} className="max-w-full" />
+          )}
           <AddOnContent repo={addon?.repo ?? ""} owner={addon?.owner ?? ""} />
         </div>
       </div>
