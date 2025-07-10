@@ -18,6 +18,7 @@ export const addUser = async (formData: FormData) => {
     const lastName = formData.get("lastName") as string;
     const email = formData.get("email") as string;
     const role = formData.get("role") as string;
+    const verified = formData.has("verified") as boolean;
 
     // generate a random password - this will get reset when the user verifies their account
     const password = crypto.randomUUID();
@@ -28,6 +29,7 @@ export const addUser = async (formData: FormData) => {
         lastName,
         email,
         password,
+        verified,
         role: { connect: { id: parseInt(role) } },
       },
     });
@@ -119,12 +121,13 @@ export const updateUser = async (formData: FormData) => {
     const lastName = formData.get("lastName") as string;
     const email = formData.get("email") as string;
     const role = formData.get("role") as string;
+    const verified = formData.has("verified") as boolean;
 
     if (!validateRequiredFields([firstName, lastName, email])) {
       return { error: "All fields are required" };
     }
 
-    if (validateEmail(email)) {
+    if (!validateEmail(email)) {
       return { error: "Invalid email address" };
     }
 
@@ -134,6 +137,7 @@ export const updateUser = async (formData: FormData) => {
         firstName,
         lastName,
         email,
+        verified,
         role: { connect: { id: parseInt(role) } },
       },
     });

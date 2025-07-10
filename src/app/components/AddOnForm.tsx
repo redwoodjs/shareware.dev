@@ -11,10 +11,8 @@ const AddOnForm = ({ categories }: { categories: Category[] }) => {
   const handleSubmit = async (formData: FormData) => {
     const response = await submitAddOn(formData);
     if (response.error) {
-      console.error(response.error);
       toast.error(response.error);
     } else {
-      // TODO: Reset form
       toast.success("Add-On submitted successfully");
     }
   };
@@ -68,7 +66,7 @@ const AddOnForm = ({ categories }: { categories: Category[] }) => {
         <DragAndDropWithPreviews
           name="coverImage"
           accept="image/*"
-          multiple={true}
+          multiple={false}
           required
         />
         <p className="text-xs">Recommended size: 1024x512</p>

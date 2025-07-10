@@ -10,6 +10,7 @@ import { useEscapeKey, useOutsideClick } from "captain-react-hooks";
 import { Role } from "@generated/prisma";
 import { addUser } from "../actions";
 import { toast } from "sonner";
+import { Toggle } from "@/app/components/Toggle";
 
 const NewUserButton = ({ roles }: { roles: Role[] }) => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -86,6 +87,14 @@ const NewUserButton = ({ roles }: { roles: Role[] }) => {
                       </div>
                     </div>
                   )}
+                  <div className="field">
+                    <Toggle
+                      name="verified"
+                      label="Verified"
+                      value="true"
+                      defaultChecked={true}
+                    />
+                  </div>
                   <div className="field button-group relative z-[var(--z-index-window-buttons)]">
                     <button type="submit" className="button primary">
                       Submit

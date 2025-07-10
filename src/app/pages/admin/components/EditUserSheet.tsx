@@ -12,6 +12,7 @@ import { Badge } from "@/app/components/Badge";
 import { Icon } from "@/app/components/Icon";
 import { useState } from "react";
 import { DeleteUser } from "./DeleteUser";
+import { Toggle } from "@/app/components/Toggle";
 
 const EditUserSheet = ({
   isOpen,
@@ -110,6 +111,14 @@ const EditUserSheet = ({
                     </div>
                   </div>
                 )}
+                <div className="field">
+                  <Toggle
+                    name="verified"
+                    label="Verified"
+                    value="true"
+                    defaultChecked={user.verified}
+                  />
+                </div>
                 <div className="field button-group up relative z-[var(--z-index-window-buttons)] pt-4">
                   <input type="hidden" name="userId" value={user.id} />
                   <button className="button primary" role="submit">
