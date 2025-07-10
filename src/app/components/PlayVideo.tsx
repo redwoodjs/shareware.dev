@@ -53,7 +53,7 @@ const PlayVideo = () => {
                   <iframe
                     width="100%"
                     height="100%"
-                    src="https://www.youtube.com/embed/2egEM4qboEA?si=JLPMTHLFqCgg-hu_"
+                    src="https://www.youtube.com/embed/BUeYunqg8o8"
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

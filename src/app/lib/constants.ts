@@ -8,4 +8,5 @@ export const constants = Object.freeze({
   BLUESKY: "https://bsky.app/profile/redwoodjs.com",
   DOCS: "https://docs.rwsdk.com",
   REDWOODJS: "https://redwoodjs.com",
+  VIDEO_URL: "https://youtube.com/watch?v=BUeYunqg8o8",
 });
