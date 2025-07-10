@@ -9,7 +9,6 @@ import { RequiredField } from "./RequiredField";
 
 const AddOnForm = ({ categories }: { categories: Category[] }) => {
   const handleSubmit = async (formData: FormData) => {
-    console.log(formData);
     const response = await submitAddOn(formData);
     if (response.error) {
       console.error(response.error);
