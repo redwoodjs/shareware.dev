@@ -1,6 +1,7 @@
 import { RouteMiddleware } from "rwsdk/router";
 import { IS_DEV } from "rwsdk/constants";
 
+
 export const setCommonHeaders =
   (): RouteMiddleware =>
   ({ headers, rw: { nonce } }) => {
@@ -27,6 +28,6 @@ export const setCommonHeaders =
     // Defines trusted sources for content loading and script execution:
     headers.set(
       "Content-Security-Policy",
-      `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://challenges.cloudflare.com https://cdn.usefathom.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.usefathom.com https://github.com https://avatars.githubusercontent.com; connect-src 'self' https://api.cloudflare.com; frame-src https://challenges.cloudflare.com https://www.youtube.com https://youtube.com; object-src 'none';`
+      `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://challenges.cloudflare.com https://cdn.usefathom.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.usefathom.com https://github.com https://avatars.githubusercontent.com https://queue.simpleanalyticscdn.com; connect-src 'self' https://api.cloudflare.com; frame-src https://challenges.cloudflare.com https://www.youtube.com https://youtube.com; object-src 'none';`
     );
   };
