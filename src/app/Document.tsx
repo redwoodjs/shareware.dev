@@ -28,6 +28,7 @@ export const Document: React.FC<{ children: React.ReactNode }> = ({
     <body>
       <div id="root">{children}</div>
       <script>import("/src/client.tsx")</script>
+      <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     </body>
   </html>
 );
