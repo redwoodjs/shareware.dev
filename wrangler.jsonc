@@ -28,11 +28,18 @@
     }
   ],
   "d1_databases": [
+    // rwsdk account
     {
       "binding": "DB",
-      "database_name": "addons-site-sweet-cattle",
-      "database_id": "6ec9506e-ecf6-413f-b5a3-80327c9cf1ad"
+      "database_name": "shareware",
+      "database_id": "2b3a0f83-4010-45a3-a9f7-8f4d4fe923d4"
     }
+    // Amy's account
+    // {
+    //   "binding": "DB",
+    //   "database_name": "addons-site-sweet-cattle",
+    //   "database_id": "6ec9506e-ecf6-413f-b5a3-80327c9cf1ad"
+    // }
   ],
   "r2_buckets": [
     {
