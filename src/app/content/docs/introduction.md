@@ -33,8 +33,8 @@ Each add-on is isolated, composable, and built to follow RedwoodSDK’s minimal,
 
 We’d love your help! You can submit your own add-ons directly from the submission page.
 Before submitting, please make sure to review our:
-- [Code Style Guidelines]()
-- [Community Guidelines]()
+- [Code Style Guidelines](/legal/code)
+- [Community Guidelines](/legal/community)
 
 We keep things simple and transparent—no complicated packaging, no hidden conventions. Just clear, sharable tools that help RedwoodSDK projects grow.
 
