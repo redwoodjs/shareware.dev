@@ -172,7 +172,7 @@ const AdminBar = ({
           </div>
         )}
       </div>
-      <div className="absolute right-0 top-0 h-[87px] block">
+      <div className="absolute right-0 top-0 h-[80px] block">
         <button
           className="cursor-pointer hover:bg-black hover:text-white h-full"
           onClick={handleToggleAdminBar}
