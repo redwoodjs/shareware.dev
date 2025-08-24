@@ -42,8 +42,8 @@ Don’t assume access to another add-on’s data or functionality unless explici
 ---
 
 ## 🎨 UI & Styling
-- **BaseUI Only**
-Official add-ons should use [BaseUI](https://base-ui.com/react/overview/quick-start) as the primary component library. Avoid mixing multiple UI kits.
+- **Base UI Only**
+Official add-ons should use [Base UI](https://base-ui.com/react/overview/quick-start) as the primary component library. Avoid mixing multiple UI kits.
 - **Custom Styling with Tailwind v4**
 Use [Tailwind’s @layer](https://tailwindcss.com/) to inject custom styles. Avoid inline styles unless necessary.
 - **Keep UI Optional**
